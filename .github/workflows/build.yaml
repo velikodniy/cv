@@ -1,0 +1,28 @@
+name: Build CV
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '**'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install Typst
+        run: |
+          curl -fsSL https://typst.community/typst-install/install.sh | sh
+      - name: Build Typst files
+        run: |
+          /home/runner/.typst/bin/typst compile main.typ --font-path fonts/ vvelicodnii-cv.pdf
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vvelicodnii-cv
+          path: vvelicodnii-cv.pdf
+          retention-days: 1
