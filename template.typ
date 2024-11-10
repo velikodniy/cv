@@ -141,6 +141,9 @@
   show-author(author)
   show-positions(positions)
   show-contacts(author, contacts)
+
+  show link: it => [#underline(offset: 2pt)[#it]]
+
   body
 }
 
