@@ -3,7 +3,7 @@
 
 #show: curriculum-vitae.with(
   author: "Vadim Velicodnii",
-  positions: ("Tech Lead", "Machine Learning", "DevOps", "Full-Stack"),
+  positions: ("Tech Lead", "Machine Learning Engineer", "DevOps", "Full-Stack Developer"),
   contacts: (
     email: "vadim.velikodniy@gmail.com",
     github: "velikodniy",
