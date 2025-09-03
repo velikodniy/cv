@@ -1,3 +1,4 @@
+#import "@preview/cmarker:0.1.6"
 #import "resume.typ": *
 
 #let data = yaml("data.yaml")
@@ -20,11 +21,6 @@
     date += " --- " + exp.endDate
   }
 
-  let highlights = ()
-  if "highlights" in exp {
-    highlights = exp.highlights.map(h => [- h])
-  }
-
   job(
     position: exp.position,
     company: exp.company,
@@ -33,7 +29,7 @@
   )[
     #if "highlights" in exp [
       #for h in exp.highlights [
-        - #h
+        - #cmarker.render(h)
       ]
     ]
   ]
@@ -54,7 +50,7 @@
   )[
     #if "details" in edu [
       #for detail in edu.details [
-        - #detail
+        - #cmarker.render(detail)
       ]
     ]
     #if "gpa" in edu [
