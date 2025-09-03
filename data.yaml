@@ -1,0 +1,99 @@
+author: Vadim Velicodnii
+positions:
+  - Tech Lead
+  - Machine Learning Engineer
+  - DevOps
+  - Full-Stack Developer
+contacts:
+  email: vadim.velikodniy@gmail.com
+  github: velikodniy
+  linkedin: vadim-velicodnii
+experience:
+  - position: Senior Machine Learning Engineer
+    company: Snap
+    location: London, UK
+    startDate: 2018-10
+    highlights:
+      - Tech lead and key developer of the Snap AI (formerly, SnapML Kit) core parts.
+      - One of the authors of the app idea (Patent WO2023230064A1).
+      - Snap AI is a no/low-code web application for creating ML-powered lenses, 3D resources, generate videos, etc.
+      - Cross-team collaboration with various ML teams, Snap infrasturture, lens designers, Lens Studio developers, monetization, production & infrastructure security, privacy and legal.
+      - The internal version of the app is being used for 2+ years for developing viral ML lenses boosting user engagement.
+      - GenAI Suite backed by Snap AI is one the main Lens Studio features announced during Snap Partner Summit 2024.
+      - Worked on the deep learning technologies behind Snap's first ML lenses.
+      - One of the authors of the novel DL model used for creating the lenses (Patent US11900565B2).
+      - The lenses became viral and boosted financial metrics.
+      - Empowered ML lens development by creating pipelines, data lakes, tools, CUDA kernels, libraries, bindings and integrations.
+      - The dataset prepared by me were the crucial part of the ML training pipelines.
+      - Automation allowed running multiple experiemnts efficiently and release new effects more often than before.
+      - Established development processes in the team.
+      - Prepared style and developement guides, introduced best development practices, encouraged other by example.
+      - Regularly gave tech talks to familiarize the team with new technologies.
+      - Prepared a lot of documentation.
+      - Onboarded and mentored new team members.
+    techStack:
+      - Python
+      - FastAPI
+      - PostgreSQL
+      - Temporal
+      - Kubernetes
+      - Terraform
+      - Google Cloud
+      - TypeScript
+      - React
+      - PyTorch
+      - CUDA
+      - C++
+      - Rust
+      - GLSL
+  - position: Senior Machine Learning Specialist
+    company: Teleport Future Technologies
+    location: Remote
+    startDate: 2016-10
+    endDate: 2018-04
+    highlights:
+      - Research and development in deep learning and computer vision.
+      - Novel deep learning architecture for real-time on-device segmentation.
+      - Realistic colorization.
+      - Developed GUI tools for the designers and developers.
+      - Developed a deep learning framwork for fast iteration over model designs.
+      - Developed a web platform for partners to test the models on the server side.
+      - Developed a demo Android app.
+    techStack:
+      - Python
+      - TensorFlow
+      - Qt
+      - AWS
+      - GLSL
+      - Android
+      - Java
+      - CUDA
+  - position: Senior Lecturer
+    company: Shevchenko Transnistria State University
+    location: Tiraspol, Moldova
+    startDate: 2006-09
+    endDate: 2018-09
+    highlights:
+      - Gave lectures on software development and design, algorithms, machine learning, systems programming, numerical analysis, CFD, etc.
+      - Supervised 10+ diploma theses.
+      - Won the Presidential Award "Best Young University Lecturer".
+      - Research and development in computational fluid dynamics, deep learning, evolutionary algorithms.
+education:
+  - institution: Shevchenko Transnistria State University
+    degree: Applied Mathematics and Computer Science
+    startDate: 2001-09
+    endDate: 2006-06
+    gpa: 4.9
+    details:
+      - Specialist degree (with honor)
+skills:
+  languages:
+    - name: English
+      level: strong
+    - name: Russian
+      level: native
+patents:
+  - code: WO2023230064A1
+    link: https://patents.google.com/patent/WO2023230064A1
+  - code: US11900565B2
+    link: https://patents.google.com/patent/US11900565B2
