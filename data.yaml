@@ -13,7 +13,7 @@ experience:
     company: Snap
     location: London, UK
     dates:
-      start: 2018-10
+      start: Oct 2018
     highlights:
       - Tech lead and key developer of the Snap AI (formerly, SnapML Kit) core parts.
       - One of the authors of the app idea (Patent [WO2023230064A1](https://patents.google.com/patent/WO2023230064A1)).
@@ -51,8 +51,8 @@ experience:
     company: Teleport Future Technologies
     location: Remote
     dates:
-      start: 2016-10
-      end: 2018-04
+      start: Oct 2016
+      end: Apr 2018
     highlights:
       - Research and development in deep learning and computer vision.
       - Novel deep learning architecture for real-time on-device segmentation.
@@ -85,8 +85,8 @@ education:
   - institution: Shevchenko Transnistria State University
     degree: Applied Mathematics and Computer Science
     dates:
-      start: 2001-09
-      end: 2006-06
+      start: Sep 2001
+      end: Sep 2006
     gpa: 4.9
     details:
       - Specialist degree (with honor)
