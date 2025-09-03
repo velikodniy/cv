@@ -12,7 +12,8 @@ experience:
   - position: Senior Machine Learning Engineer
     company: Snap
     location: London, UK
-    startDate: 2018-10
+    dates:
+      start: 2018-10
     highlights:
       - Tech lead and key developer of the Snap AI (formerly, SnapML Kit) core parts.
       - One of the authors of the app idea (Patent [WO2023230064A1](https://patents.google.com/patent/WO2023230064A1)).
@@ -49,8 +50,9 @@ experience:
   - position: Senior Machine Learning Specialist
     company: Teleport Future Technologies
     location: Remote
-    startDate: 2016-10
-    endDate: 2018-04
+    dates:
+      start: 2016-10
+      end: 2018-04
     highlights:
       - Research and development in deep learning and computer vision.
       - Novel deep learning architecture for real-time on-device segmentation.
@@ -71,8 +73,9 @@ experience:
   - position: Senior Lecturer
     company: Shevchenko Transnistria State University
     location: Tiraspol, Moldova
-    startDate: 2006-09
-    endDate: 2018-09
+    dates:
+      start: Sep 2006
+      end: Sep 2018
     highlights:
       - Gave lectures on software development and design, algorithms, machine learning, systems programming, numerical analysis, CFD, etc.
       - Supervised 10+ diploma theses.
@@ -81,8 +84,9 @@ experience:
 education:
   - institution: Shevchenko Transnistria State University
     degree: Applied Mathematics and Computer Science
-    startDate: 2001-09
-    endDate: 2006-06
+    dates:
+      start: 2001-09
+      end: 2006-06
     gpa: 4.9
     details:
       - Specialist degree (with honor)
