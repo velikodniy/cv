@@ -223,3 +223,11 @@
     )
   ]
 }
+
+#let date-range(range) = [
+  #if "end" in range [
+    #range.start --- #range.end
+  ] else [
+    #range.start --- #emph("Present")
+  ]
+]

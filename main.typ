@@ -16,16 +16,11 @@
 = Experience
 
 #for exp in data.experience {
-  let date = exp.startDate
-  if "endDate" in exp {
-    date += " --- " + exp.endDate
-  }
-
   job(
     position: exp.position,
     company: exp.company,
     location: exp.location,
-    date: date,
+    date: date-range(exp.dates),
   )[
     #if "highlights" in exp [
       #for h in exp.highlights [
@@ -38,15 +33,10 @@
 = Education
 
 #for edu in data.education [
-  #let date = edu.startDate
-  #if "endDate" in edu [
-    #date += " --- " + edu.endDate
-  ]
-
   #job(
     position: edu.degree,
     company: edu.institution,
-    date: date,
+    date: date-range(edu.dates),
   )[
     #if "details" in edu [
       #for detail in edu.details [
