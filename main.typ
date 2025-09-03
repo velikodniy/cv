@@ -1,4 +1,4 @@
-#import "template.typ": *
+#import "resume.typ": *
 
 #let data = yaml("data.yaml")
 
