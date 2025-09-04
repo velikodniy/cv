@@ -306,6 +306,7 @@ h6 {
 /* Contact components */
 .contact {
   margin-bottom: var(--space-xl);
+  font-style: normal;
 }
 
 .contact__list {
