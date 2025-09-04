@@ -59,6 +59,12 @@
   ]
 ]
 
+= Patents
+
+#for patent in data.patents [
+  - #patent.title (#link(patent.link)[#patent.code])
+]
+
 = Skills
 
 #for (skill_category, skills_list) in data.skills.pairs() {
