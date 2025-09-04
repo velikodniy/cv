@@ -1,14 +1,12 @@
 name: Build CV
-on:
-  workflow_dispatch:
-  push:
-    tags:
-      - '**'
-permissions:
-  contents: write
+on: [push]
 jobs:
-  build:
+  deploy:
+    name: Deploy to Cloudflare Pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,5 +24,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: |
             pages deploy build/ --project-name=vvelicodnii-cv
