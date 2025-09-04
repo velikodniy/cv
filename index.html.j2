@@ -136,6 +136,16 @@
                 {% endfor %}
             </section>
 
+            <section class="section" aria-labelledby="patents-title">
+                <h2 id="patents-title" class="section__title">Patents</h2>
+                <ul class="highlights-list">
+                    {% for patent in patents %}
+                    <li class="highlights-list__item">
+                        {{ patent.title }} (<a href="{{ patent.link }}" target="_blank" rel="noopener nofollow">{{ patent.code }}</a>)
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
 
         </main>
     </div>
