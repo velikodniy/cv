@@ -38,15 +38,11 @@
                 <h2 class="subsection-title">Personal Info</h2>
                 <div class="info-item">
                     <span class="info-label">Location</span>
-                    <span>London, UK</span>
+                    <span>{{ location }}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Languages</span>
                     <span>{{ skills.languages | map(attribute="name") | join(", ") }}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Specialization</span>
-                    <span>Machine Learning, Computer Vision, Deep Learning</span>
                 </div>
             </section>
         </aside>
@@ -103,14 +99,15 @@
         </main>
     </div>
 
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <i id="theme-icon" class="fas fa-moon"></i>
-    </button>
-
-    <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="download-btn" aria-label="Download PDF">
-        <i class="fas fa-download"></i>
-        <span>Download</span>
-    </a>
+    <div class="button-group">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+        <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="download-btn" aria-label="Download PDF">
+            <i class="fas fa-download"></i>
+            <span>Download</span>
+        </a>
+    </div>
 
     <script>
         function toggleTheme() {
