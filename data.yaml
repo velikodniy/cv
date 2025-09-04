@@ -1,4 +1,6 @@
 author: Vadim Velicodnii
+about: |
+  A passionate and results-oriented software engineer with a strong background in machine learning and full-stack development. I thrive on solving complex problems and building innovative solutions that make a real-world impact. I am always eager to learn new technologies and apply them to create elegant and efficient applications.
 positions:
   - Tech Lead
   - Machine Learning Engineer
@@ -17,7 +19,7 @@ experience:
     highlights:
       - Tech lead and key developer of the Snap AI (formerly, SnapML Kit) core parts.
       - One of the authors of the app idea (Patent [WO2023230064A1](https://patents.google.com/patent/WO2023230064A1)).
-      - '[Snap AI](https://ar.snap.com/snapml-kit) is a no/low-code web application for creating ML-powered lenses, 3D resources, generate videos, etc.'
+      - "[Snap AI](https://ar.snap.com/snapml-kit) is a no/low-code web application for creating ML-powered lenses, 3D resources, generate videos, etc."
       - Cross-team collaboration with various ML teams, Snap infrasturture, lens designers, Lens Studio developers, monetization, production & infrastructure security, privacy and legal.
       - The internal version of the app is being used for 2+ years for developing viral ML lenses boosting user engagement.
       - GenAI Suite backed by Snap AI is one the main Lens Studio features [announced](https://newsroom.snap.com/sps-2024-new-ai-powered-tools) during Snap Partner Summit 2024.

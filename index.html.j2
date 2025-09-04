@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ author }} - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="leading-relaxed">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="mb-6 text-center">
+                <img src="https://avatars.githubusercontent.com/u/1735272?v=4" alt="{{ author }}"
+                    class="profile-image">
+            </div>
+
+            <div class="mb-8">
+                <h1 class="name">{{ author }}</h1>
+                <p class="job-titles">
+                    {{ positions | join(" · ") }}
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:{{ contacts.email }}" class="contact-link">
+                        <i class="fas fa-envelope contact-icon"></i> {{ contacts.email }}
+                    </a>
+                    <a href="https://github.com/{{ contacts.github }}" class="contact-link">
+                        <i class="fab fa-github contact-icon"></i> {{ contacts.github }}
+                    </a>
+                    <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact-link">
+                        <i class="fab fa-linkedin contact-icon"></i> {{ contacts.linkedin }}
+                    </a>
+                </div>
+            </div>
+
+            <section class="personal-info">
+                <h2 class="subsection-title">Personal Info</h2>
+                <div class="info-item">
+                    <span class="info-label">Location</span>
+                    <span>London, UK</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Languages</span>
+                    <span>{{ skills.languages | map(attribute="name") | join(", ") }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Specialization</span>
+                    <span>Machine Learning, Computer Vision, Deep Learning</span>
+                </div>
+            </section>
+        </aside>
+
+        <main class="main-content">
+            <section class="mb-8">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-text">
+                    {{ about | safe }}
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="section-title">Experience</h2>
+                {% for job in experience %}
+                <div class="experience-item">
+                    <div class="job-header">
+                        <h3 class="job-title">{{ job.position }}</h3>
+                        <span class="location">{{ job.location }}</span>
+                    </div>
+                    <div class="job-meta">
+                        <p class="company-name">{{ job.company }}</p>
+                        <span class="date-range">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</span>
+                    </div>
+                    <ul class="bullet-list">
+                        {% for highlight in job.highlights %}
+                        <li>{{ highlight | markdown_links | safe }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </section>
+
+            <section class="mb-8">
+                <h2 class="section-title">Education</h2>
+                {% for edu in education %}
+                <div class="experience-item">
+                    <div class="job-header">
+                        <h3 class="job-title">{{ edu.degree }}</h3>
+                        <span class="date-range">{{ edu.dates.start }} — {{ edu.dates.end }}</span>
+                    </div>
+                    <p class="company-name mb-2">{{ edu.institution }}</p>
+                    <ul class="bullet-list">
+                        {% for detail in edu.details %}
+                        <li>{{ detail | markdown_links | safe }}</li>
+                        {% endfor %}
+                        <li>GPA: {{ edu.gpa }}</li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </section>
+
+
+        </main>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+
+    <button class="download-btn" onclick="downloadPDF()" aria-label="Download PDF">
+        <i class="fas fa-download"></i>
+        <span>Download</span>
+    </button>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = html.getAttribute('data-theme');
+
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function downloadPDF() {
+            // Create a temporary link element to trigger download
+            const link = document.createElement('a');
+            link.href = 'vvelicodnii-cv.pdf';
+            link.download = 'vvelicodnii-cv.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+    </script>
+</body>
+
+</html>
