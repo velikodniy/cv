@@ -16,12 +16,15 @@ jobs:
           lfs: true
       - name: Setup Typst
         uses: typst-community/setup-typst@v4
+      - name: Create the build directory
+        run: |
+          mkdir build
       - name: Build Typst files
         run: |
-          typst compile main.typ --font-path fonts/ vvelicodnii-cv.pdf
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+          typst compile main.typ --font-path fonts/ build/vvelicodnii-cv.pdf
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
         with:
-          name: vvelicodnii-cv
-          path: vvelicodnii-cv.pdf
-          retention-days: 1
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: |
+            pages deploy build/ --project-name=vvelicodnii-cv
