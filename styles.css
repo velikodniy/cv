@@ -125,6 +125,72 @@ h6 {
   padding: var(--space-xl);
 }
 
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .resume {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .resume__sidebar {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-lg);
+  }
+
+  .resume__main {
+    padding: var(--space-lg);
+  }
+
+  .profile__avatar {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .profile__name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .experience-item__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .experience-item__location {
+    font-size: var(--font-size-xs);
+    margin-top: var(--space-xs);
+  }
+
+  .experience-item__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .actions {
+    position: static;
+    margin: var(--space-md) auto;
+    justify-content: center;
+    gap: var(--space-xs);
+  }
+
+  .btn--primary {
+    padding: var(--space-xs);
+    min-width: 35px;
+  }
+
+  .btn--primary span {
+    display: none;
+  }
+
+  .btn--primary .fas {
+    margin: 0;
+  }
+}
+
 /* Profile components */
 .profile {
   text-align: center;
