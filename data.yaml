@@ -19,23 +19,13 @@ experience:
     dates:
       start: Oct 2018
     highlights:
-      - Tech lead and key developer of the Snap AI (formerly, SnapML Kit) core parts.
-      - One of the authors of the app idea.
-      - "[Snap AI](https://ar.snap.com/snapml-kit) is a no/low-code web application for creating ML-powered lenses, 3D resources, generate videos, etc."
-      - Cross-team collaboration with various ML teams, Snap infrasturture, lens designers, Lens Studio developers, monetization, production & infrastructure security, privacy and legal.
-      - The internal version of the app is being used for 2+ years for developing viral ML lenses boosting user engagement.
-      - GenAI Suite backed by Snap AI is one the main Lens Studio features [announced](https://newsroom.snap.com/sps-2024-new-ai-powered-tools) during Snap Partner Summit 2024.
-      - Worked on the deep learning technologies behind Snap's first ML lenses.
-      - One of the authors of the novel DL model used for creating the lenses.
-      - The lenses became viral and boosted financial metrics.
-      - Empowered ML lens development by creating pipelines, data lakes, tools, CUDA kernels, libraries, bindings and integrations.
-      - The dataset prepared by me were the crucial part of the ML training pipelines.
-      - Automation allowed running multiple experiemnts efficiently and release new effects more often than before.
-      - Established development processes in the team.
-      - Prepared style and developement guides, introduced best development practices, encouraged other by example.
-      - Regularly gave tech talks to familiarize the team with new technologies.
-      - Prepared a lot of documentation.
-      - Onboarded and mentored new team members.
+      - Tech lead and key developer of Snap AI (formerly SnapML Kit), a no/low-code web application for creating ML-powered lenses and 3D resources.
+      - One of the authors of the app idea and novel DL model used for creating viral ML lenses that boosted user engagement and financial metrics.
+      - GenAI Suite backed by Snap AI became a main Lens Studio feature [announced](https://newsroom.snap.com/sps-2024-new-ai-powered-tools) during Snap Partner Summit 2024.
+      - Built comprehensive ML infrastructure including pipelines, data lakes, tools, CUDA kernels, libraries, and integrations for efficient lens development.
+      - Cross-team collaboration with ML teams, Snap infrastructure, lens designers, Lens Studio developers, monetization, security, privacy and legal.
+      - Established development processes, prepared technical documentation, and mentored team members while introducing best practices.
+      - Worked on deep learning technologies behind Snap's first ML lenses, preparing crucial datasets for ML training pipelines.
     techStack:
       - Python
       - FastAPI
