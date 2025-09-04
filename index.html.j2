@@ -5,54 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ author }} - Resume</title>
+    <meta name="description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="leading-relaxed">
-    <div class="container">
-        <aside class="sidebar">
-            <div class="mb-6 text-center">
-                <img src="https://avatars.githubusercontent.com/u/1735272?v=4" alt="{{ author }}"
-                    class="profile-image">
-            </div>
+<body>
+    <div class="resume">
+        <aside class="resume__sidebar">
+            <header class="profile">
+                <img src="https://avatars.githubusercontent.com/u/1735272?v=4" alt="{{ author }}" class="profile__avatar">
+                <h1 class="profile__name">{{ author }}</h1>
+                <p class="profile__title">{{ positions | join(" · ") }}</p>
+            </header>
 
-            <div class="mb-8">
-                <h1 class="name">{{ author }}</h1>
-                <p class="job-titles">
-                    {{ positions | join(" · ") }}
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:{{ contacts.email }}" class="contact-link">
-                        <i class="fas fa-envelope contact-icon"></i> {{ contacts.email }}
-                    </a>
-                    <a href="https://github.com/{{ contacts.github }}" class="contact-link">
-                        <i class="fab fa-github contact-icon"></i> {{ contacts.github }}
-                    </a>
-                    <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact-link">
-                        <i class="fab fa-linkedin contact-icon"></i> {{ contacts.linkedin }}
-                    </a>
-                </div>
-            </div>
+            <nav class="contact" aria-label="Contact information">
+                <ul class="contact__list">
+                    <li>
+                        <a href="mailto:{{ contacts.email }}" class="contact__link">
+                            <i class="fas fa-envelope contact__icon" aria-hidden="true"></i>
+                            <span>{{ contacts.email }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/{{ contacts.github }}" class="contact__link">
+                            <i class="fab fa-github contact__icon" aria-hidden="true"></i>
+                            <span>{{ contacts.github }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact__link">
+                            <i class="fab fa-linkedin contact__icon" aria-hidden="true"></i>
+                            <span>{{ contacts.linkedin }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-            <section class="personal-info">
-                <h2 class="subsection-title">Personal Info</h2>
-                <div class="info-item">
-                    <span class="info-label">Location</span>
-                    <span>{{ location }}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Languages</span>
-                    <span>{{ skills.languages | map(attribute="name") | join(", ") }}</span>
-                </div>
+            <section class="personal-info" aria-labelledby="personal-info-title">
+                <h2 id="personal-info-title" class="section__subtitle">Personal Info</h2>
+                <dl>
+                    <div class="personal-info__item">
+                        <dt class="personal-info__label">Location</dt>
+                        <dd class="personal-info__value">{{ location }}</dd>
+                    </div>
+                    <div class="personal-info__item">
+                        <dt class="personal-info__label">Languages</dt>
+                        <dd class="personal-info__value">{{ skills.languages | map(attribute="name") | join(", ") }}</dd>
+                    </div>
+                </dl>
             </section>
         </aside>
 
-        <main class="main-content">
-            <section class="mb-8">
-                <h2 class="section-title">About Me</h2>
-                <p class="about-text">
-                    {{ about | safe }}
-                </p>
+        <main class="resume__main">
+            <section class="section" aria-labelledby="about-title">
+                <h2 id="about-title" class="section__title">About Me</h2>
+                <p class="content-text">{{ about | safe }}</p>
             </section>
 
             <section class="mb-8">
@@ -99,14 +106,15 @@
         </main>
     </div>
 
-    <div class="button-group">
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-            <i id="theme-icon" class="fas fa-moon"></i>
-        </button>
-        <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="download-btn" aria-label="Download PDF">
-            <i class="fas fa-download"></i>
-            <span>Download</span>
-        </a>
+        <div class="actions">
+            <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary">
+                <i class="fas fa-download" aria-hidden="true"></i>
+                <span>Download CV</span>
+            </a>
+        </div>
     </div>
 
     <script>
