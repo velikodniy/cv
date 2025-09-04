@@ -8,36 +8,52 @@
     <meta name="description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
     <meta name="author" content="{{ author }}">
     <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{ author }} - Resume">
+    <meta property="og:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
+    <meta property="og:image" content="vadim.jpeg">
+    <meta property="og:url" content="{{ request.url if request else '' }}">
+    <meta property="profile:first_name" content="{{ author.split()[0] }}">
+    <meta property="profile:last_name" content="{{ author.split()[-1] }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ author }} - Resume">
+    <meta name="twitter:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
+    <meta name="twitter:image" content="vadim.jpeg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="resume">
+    <div class="resume" itemscope itemtype="https://schema.org/Person">
         <aside class="resume__sidebar">
             <header class="profile">
-                <img src="vadim.jpeg" alt="Photo of {{ author }}" class="profile__avatar" width="192" height="192" loading="eager">
-                <h1 class="profile__name">{{ author }}</h1>
-                <p class="profile__title">{{ positions | join(" · ") }}</p>
+                <img src="vadim.jpeg" alt="Photo of {{ author }}" class="profile__avatar" width="192" height="192" loading="eager" itemprop="image">
+                <h1 class="profile__name" itemprop="name">{{ author }}</h1>
+                <p class="profile__title" itemprop="jobTitle">{{ positions | join(" · ") }}</p>
             </header>
 
             <address class="contact" aria-label="Contact information">
                 <ul class="contact__list" role="list">
                     <li>
-                        <a href="mailto:{{ contacts.email }}" class="contact__link" rel="noopener" aria-label="Send email to {{ contacts.email }}">
+                        <a href="mailto:{{ contacts.email }}" class="contact__link" rel="noopener" aria-label="Send email to {{ contacts.email }}" itemprop="email">
                             <i class="fas fa-envelope contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.email }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/{{ contacts.github }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s GitHub profile">
+                        <a href="https://github.com/{{ contacts.github }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s GitHub profile" itemprop="sameAs">
                             <i class="fab fa-github contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.github }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s LinkedIn profile">
+                        <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s LinkedIn profile" itemprop="sameAs">
                             <i class="fab fa-linkedin contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.linkedin }}</span>
                         </a>
@@ -50,11 +66,15 @@
                 <dl class="personal-info__list">
                     <div class="personal-info__item">
                         <dt class="personal-info__label">Location</dt>
-                        <dd class="personal-info__value">{{ location }}</dd>
+                        <dd class="personal-info__value" itemprop="address">{{ location }}</dd>
                     </div>
                     <div class="personal-info__item">
                         <dt class="personal-info__label">Languages</dt>
-                        <dd class="personal-info__value">{{ skills.languages | map(attribute="name") | join(", ") }}</dd>
+                        <dd class="personal-info__value">
+                            {% for language in skills.languages %}
+                            <span itemprop="knowsLanguage">{{ language.name }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </dd>
                     </div>
                 </dl>
             </section>
@@ -63,22 +83,24 @@
         <main class="resume__main">
             <section class="section" aria-labelledby="about-title">
                 <h2 id="about-title" class="section__title">About Me</h2>
-                <p class="content-text">{{ about | safe }}</p>
+                <p class="content-text" itemprop="description">{{ about | safe }}</p>
             </section>
 
             <section class="section" aria-labelledby="experience-title">
                 <h2 id="experience-title" class="section__title">Experience</h2>
                 {% for job in experience %}
-                <article class="experience-item">
+                <article class="experience-item" itemscope itemtype="https://schema.org/WorkExperience" itemprop="workExperience">
                     <header class="experience-item__header">
-                        <h3 class="experience-item__title">{{ job.position }}</h3>
-                        <span class="experience-item__location">{{ job.location }}</span>
+                        <h3 class="experience-item__title" itemprop="name">{{ job.position }}</h3>
+                        <span class="experience-item__location" itemprop="workLocation">{{ job.location }}</span>
                     </header>
                     <div class="experience-item__meta">
-                        <p class="experience-item__company">{{ job.company }}</p>
-                        <time class="experience-item__date">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
+                        <p class="experience-item__company" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                            <span itemprop="name">{{ job.company }}</span>
+                        </p>
+                        <time class="experience-item__date" itemprop="datePublished">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
                     </div>
-                    <ul class="highlights-list">
+                    <ul class="highlights-list" itemprop="description">
                         {% for highlight in job.highlights %}
                         <li class="highlights-list__item">{{ highlight | markdown_links | safe }}</li>
                         {% endfor %}
@@ -90,16 +112,18 @@
             <section class="section" aria-labelledby="education-title">
                 <h2 id="education-title" class="section__title">Education</h2>
                 {% for edu in education %}
-                <article class="experience-item">
+                <article class="experience-item" itemscope itemtype="https://schema.org/EducationalOccupationalCredential" itemprop="hasCredential">
                     <header class="experience-item__header">
-                        <h3 class="experience-item__title">{{ edu.degree }}</h3>
-                        <time class="experience-item__date">{{ edu.dates.start }} — {{ edu.dates.end }}</time>
+                        <h3 class="experience-item__title" itemprop="name">{{ edu.degree }}</h3>
+                        <time class="experience-item__date" itemprop="dateCreated">{{ edu.dates.start }} — {{ edu.dates.end }}</time>
                     </header>
                     <div class="experience-item__meta">
-                        <p class="experience-item__company">{{ edu.institution }}</p>
+                        <p class="experience-item__company" itemprop="recognizedBy" itemscope itemtype="https://schema.org/EducationalOrganization">
+                            <span itemprop="name">{{ edu.institution }}</span>
+                        </p>
                         <span></span>
                     </div>
-                    <ul class="highlights-list">
+                    <ul class="highlights-list" itemprop="description">
                         {% for detail in edu.details %}
                         <li class="highlights-list__item">{{ detail | markdown_links | safe }}</li>
                         {% endfor %}
