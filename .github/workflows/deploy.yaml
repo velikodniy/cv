@@ -16,6 +16,12 @@ jobs:
         uses: typst-community/setup-typst@v4
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install minify
+        run: npm install -g minify
       - name: Create the build directory
         run: |
           mkdir build
@@ -24,8 +30,9 @@ jobs:
           typst compile main.typ --font-path fonts/ build/vvelicodnii-cv.pdf
       - name: Build web page
         run: |
-          uv run render.py index.html.j2 data.yaml build/index.html
-          cp styles.css build/
+          uv run render.py index.html.j2 data.yaml index.html
+          minify index.html > build/index.html
+          minify styles.css > build/styles.css
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
