@@ -33,6 +33,7 @@ jobs:
           uv run render.py index.html.j2 data.yaml index.html
           minify index.html > build/index.html
           minify styles.css > build/styles.css
+          cp vadim.jpeg build/
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
