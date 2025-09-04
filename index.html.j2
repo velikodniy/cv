@@ -13,8 +13,9 @@
     <meta property="og:type" content="profile">
     <meta property="og:title" content="{{ author }} - Resume">
     <meta property="og:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
-    <meta property="og:image" content="vadim.jpeg">
-    <meta property="og:url" content="{{ request.url if request else '' }}">
+    <meta property="og:image" content="{{ base_url }}/vadim.jpeg">
+    <meta property="og:url" content="{{ base_url }}">
+    <meta property="og:logo" content="{{ base_url }}/vadim.jpeg">
     <meta property="profile:first_name" content="{{ author.split()[0] }}">
     <meta property="profile:last_name" content="{{ author.split()[-1] }}">
 
@@ -22,7 +23,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ author }} - Resume">
     <meta name="twitter:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
-    <meta name="twitter:image" content="vadim.jpeg">
+    <meta name="twitter:image" content="{{ base_url }}/vadim.jpeg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -88,17 +89,18 @@
 
             <section class="section" aria-labelledby="experience-title">
                 <h2 id="experience-title" class="section__title">Experience</h2>
+                <div itemprop="hasOccupation" itemscope itemtype="https://schema.org/Occupation">
                 {% for job in experience %}
-                <article class="experience-item" itemscope itemtype="https://schema.org/WorkExperience" itemprop="workExperience">
+                <article class="experience-item">
                     <header class="experience-item__header">
                         <h3 class="experience-item__title" itemprop="name">{{ job.position }}</h3>
-                        <span class="experience-item__location" itemprop="workLocation">{{ job.location }}</span>
+                        <span class="experience-item__location">{{ job.location }}</span>
                     </header>
-                    <div class="experience-item__meta">
-                        <p class="experience-item__company" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                    <div class="experience-item__meta" itemprop="occupationLocation" itemscope itemtype="https://schema.org/Organization">
+                        <p class="experience-item__company">
                             <span itemprop="name">{{ job.company }}</span>
                         </p>
-                        <time class="experience-item__date" itemprop="datePublished">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
+                        <time class="experience-item__date">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
                     </div>
                     <ul class="highlights-list" itemprop="description">
                         {% for highlight in job.highlights %}
@@ -107,6 +109,7 @@
                     </ul>
                 </article>
                 {% endfor %}
+                </div>
             </section>
 
             <section class="section" aria-labelledby="education-title">
