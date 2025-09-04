@@ -73,7 +73,7 @@
                         <dt class="personal-info__label">Languages</dt>
                         <dd class="personal-info__value">
                             {% for language in skills.languages %}
-                            <span itemprop="knowsLanguage">{{ language.name }}</span>{% if not loop.last %}, {% endif %}
+                            <span itemprop="knowsLanguage">{{ language.name }} ({{ language.level }})</span>{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </dd>
                     </div>

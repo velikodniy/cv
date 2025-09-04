@@ -65,9 +65,8 @@
   - #patent.title (#link(patent.link)[#patent.code])
 ]
 
-= Skills
+= Languages
 
-#for (skill_category, skills_list) in data.skills.pairs() {
-  let details = skills_list.map(d => d.name + " (" + d.level + ")")
-  skill(skill_category, details)
-}
+#for lang in data.skills.languages [
+  - #lang.name (#lang.level)
+]
