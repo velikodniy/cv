@@ -61,12 +61,30 @@
 
 = Patents
 
-#for patent in data.patents [
-  - #patent.title (#link(patent.link)[#patent.code])
+#block[
+  #set text(
+    size: 10pt,
+    style: "normal",
+    weight: "light",
+    fill: colors.primary,
+  )
+  #set par(leading: 0.65em)
+  #for patent in data.patents [
+    - #patent.title (#link(patent.link)[#patent.code])
+  ]
 ]
 
 = Languages
 
-#for lang in data.skills.languages [
-  - #lang.name (#lang.level)
+#block[
+  #set text(
+    size: 10pt,
+    style: "normal",
+    weight: "light",
+    fill: colors.primary,
+  )
+  #set par(leading: 0.65em)
+  #for lang in data.skills.languages [
+    - #lang.name (#lang.level)
+  ]
 ]
