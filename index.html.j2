@@ -62,43 +62,46 @@
                 <p class="content-text">{{ about | safe }}</p>
             </section>
 
-            <section class="mb-8">
-                <h2 class="section-title">Experience</h2>
+            <section class="section" aria-labelledby="experience-title">
+                <h2 id="experience-title" class="section__title">Experience</h2>
                 {% for job in experience %}
-                <div class="experience-item">
-                    <div class="job-header">
-                        <h3 class="job-title">{{ job.position }}</h3>
-                        <span class="location">{{ job.location }}</span>
+                <article class="experience-item">
+                    <header class="experience-item__header">
+                        <h3 class="experience-item__title">{{ job.position }}</h3>
+                        <span class="experience-item__location">{{ job.location }}</span>
+                    </header>
+                    <div class="experience-item__meta">
+                        <p class="experience-item__company">{{ job.company }}</p>
+                        <time class="experience-item__date">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
                     </div>
-                    <div class="job-meta">
-                        <p class="company-name">{{ job.company }}</p>
-                        <span class="date-range">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</span>
-                    </div>
-                    <ul class="bullet-list">
+                    <ul class="highlights-list">
                         {% for highlight in job.highlights %}
-                        <li>{{ highlight | markdown_links | safe }}</li>
+                        <li class="highlights-list__item">{{ highlight | markdown_links | safe }}</li>
                         {% endfor %}
                     </ul>
-                </div>
+                </article>
                 {% endfor %}
             </section>
 
-            <section class="mb-8">
-                <h2 class="section-title">Education</h2>
+            <section class="section" aria-labelledby="education-title">
+                <h2 id="education-title" class="section__title">Education</h2>
                 {% for edu in education %}
-                <div class="experience-item">
-                    <div class="job-header">
-                        <h3 class="job-title">{{ edu.degree }}</h3>
-                        <span class="date-range">{{ edu.dates.start }} — {{ edu.dates.end }}</span>
+                <article class="experience-item">
+                    <header class="experience-item__header">
+                        <h3 class="experience-item__title">{{ edu.degree }}</h3>
+                        <time class="experience-item__date">{{ edu.dates.start }} — {{ edu.dates.end }}</time>
+                    </header>
+                    <div class="experience-item__meta">
+                        <p class="experience-item__company">{{ edu.institution }}</p>
+                        <span></span>
                     </div>
-                    <p class="company-name mb-2">{{ edu.institution }}</p>
-                    <ul class="bullet-list">
+                    <ul class="highlights-list">
                         {% for detail in edu.details %}
-                        <li>{{ detail | markdown_links | safe }}</li>
+                        <li class="highlights-list__item">{{ detail | markdown_links | safe }}</li>
                         {% endfor %}
-                        <li>GPA: {{ edu.gpa }}</li>
+                        <li class="highlights-list__item">GPA: {{ edu.gpa }}</li>
                     </ul>
-                </div>
+                </article>
                 {% endfor %}
             </section>
 
@@ -110,7 +113,7 @@
             <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle dark mode">
                 <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
             </button>
-            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary">
+            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary" type="application/pdf">
                 <i class="fas fa-download" aria-hidden="true"></i>
                 <span>Download CV</span>
             </a>
@@ -133,6 +136,7 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
+
 
         document.addEventListener('DOMContentLoaded', function () {
             const savedTheme = localStorage.getItem('theme');
