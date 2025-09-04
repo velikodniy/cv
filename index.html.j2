@@ -107,10 +107,10 @@
         <i id="theme-icon" class="fas fa-moon"></i>
     </button>
 
-    <button class="download-btn" onclick="downloadPDF()" aria-label="Download PDF">
+    <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="download-btn" aria-label="Download PDF">
         <i class="fas fa-download"></i>
         <span>Download</span>
-    </button>
+    </a>
 
     <script>
         function toggleTheme() {
@@ -127,16 +127,6 @@
                 themeIcon.className = 'fas fa-sun';
                 localStorage.setItem('theme', 'dark');
             }
-        }
-
-        function downloadPDF() {
-            // Create a temporary link element to trigger download
-            const link = document.createElement('a');
-            link.href = 'vvelicodnii-cv.pdf';
-            link.download = 'vvelicodnii-cv.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
