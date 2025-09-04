@@ -1,7 +1,17 @@
-#import "@preview/cmarker:0.1.6"
 #import "resume.typ": *
 
 #let data = yaml("data.yaml")
+
+#let render-markdown-links(text) = {
+  let link_regex = regex("\[([^\]]+)\]\(([^)]+)\)")
+  show link_regex: it => {
+    let m = it.text.match(link_regex)
+    let link_text = m.captures.at(0)
+    let url = m.captures.at(1)
+    link(url)[#link_text]
+  }
+  text
+}
 
 #show: curriculum-vitae.with(
   author: data.author,
@@ -24,7 +34,7 @@
   )[
     #if "highlights" in exp [
       #for h in exp.highlights [
-        - #cmarker.render(h)
+        - #render-markdown-links(h)
       ]
     ]
   ]
@@ -40,7 +50,7 @@
   )[
     #if "details" in edu [
       #for detail in edu.details [
-        - #cmarker.render(detail)
+        - #render-markdown-links(detail)
       ]
     ]
     #if "gpa" in edu [
