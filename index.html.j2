@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ author }} - Resume</title>
     <meta name="description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
+    <meta name="author" content="{{ author }}">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -13,37 +17,37 @@
     <div class="resume">
         <aside class="resume__sidebar">
             <header class="profile">
-                <img src="vadim.jpeg" alt="{{ author }}" class="profile__avatar">
+                <img src="vadim.jpeg" alt="Photo of {{ author }}" class="profile__avatar" width="192" height="192" loading="eager">
                 <h1 class="profile__name">{{ author }}</h1>
                 <p class="profile__title">{{ positions | join(" · ") }}</p>
             </header>
 
-            <nav class="contact" aria-label="Contact information">
-                <ul class="contact__list">
+            <address class="contact" aria-label="Contact information">
+                <ul class="contact__list" role="list">
                     <li>
-                        <a href="mailto:{{ contacts.email }}" class="contact__link">
+                        <a href="mailto:{{ contacts.email }}" class="contact__link" rel="noopener" aria-label="Send email to {{ contacts.email }}">
                             <i class="fas fa-envelope contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.email }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/{{ contacts.github }}" class="contact__link">
+                        <a href="https://github.com/{{ contacts.github }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s GitHub profile">
                             <i class="fab fa-github contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.github }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact__link">
+                        <a href="https://linkedin.com/in/{{ contacts.linkedin }}" class="contact__link" rel="noopener nofollow" target="_blank" aria-label="Visit {{ author }}'s LinkedIn profile">
                             <i class="fab fa-linkedin contact__icon" aria-hidden="true"></i>
                             <span>{{ contacts.linkedin }}</span>
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </address>
 
             <section class="personal-info" aria-labelledby="personal-info-title">
-                <h2 id="personal-info-title" class="section__subtitle">Personal Info</h2>
-                <dl>
+                <h2 id="personal-info-title" class="section__subtitle">Personal Information</h2>
+                <dl class="personal-info__list">
                     <div class="personal-info__item">
                         <dt class="personal-info__label">Location</dt>
                         <dd class="personal-info__value">{{ location }}</dd>
@@ -109,11 +113,11 @@
         </main>
     </div>
 
-        <div class="actions">
-            <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <div class="actions" role="toolbar" aria-label="Page actions">
+            <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle between light and dark theme" aria-pressed="false">
                 <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
             </button>
-            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary" type="application/pdf">
+            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary" type="application/pdf" aria-label="Download CV as PDF">
                 <i class="fas fa-download" aria-hidden="true"></i>
                 <span>Download CV</span>
             </a>
@@ -124,15 +128,18 @@
         function toggleTheme() {
             const html = document.documentElement;
             const themeIcon = document.getElementById('theme-icon');
+            const themeButton = themeIcon.closest('button');
             const currentTheme = html.getAttribute('data-theme');
 
             if (currentTheme === 'dark') {
                 html.removeAttribute('data-theme');
                 themeIcon.className = 'fas fa-moon';
+                themeButton.setAttribute('aria-pressed', 'false');
                 localStorage.setItem('theme', 'light');
             } else {
                 html.setAttribute('data-theme', 'dark');
                 themeIcon.className = 'fas fa-sun';
+                themeButton.setAttribute('aria-pressed', 'true');
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -141,10 +148,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             const savedTheme = localStorage.getItem('theme');
             const themeIcon = document.getElementById('theme-icon');
+            const themeButton = themeIcon.closest('button');
 
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 themeIcon.className = 'fas fa-sun';
+                themeButton.setAttribute('aria-pressed', 'true');
             }
         });
     </script>
