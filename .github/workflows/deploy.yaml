@@ -1,4 +1,4 @@
-name: Build CV
+name: Deploy CV
 on: [push]
 jobs:
   deploy:
