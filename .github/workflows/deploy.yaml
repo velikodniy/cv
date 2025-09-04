@@ -27,4 +27,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: |
-            pages deploy build/ --project-name=vvelicodnii-cv
+            pages deploy build/ --project-name=vvelicodnii-cv --commit-dirty=true
