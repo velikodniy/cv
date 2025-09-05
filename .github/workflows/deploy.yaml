@@ -30,7 +30,7 @@ jobs:
           mkdir build
       - name: Build Typst files
         run: |
-          typst compile --root . typst/main.typ --font-path typst/fonts/ build/vvelicodnii-cv.pdf
+          typst compile --root . typst/cv.typ --font-path typst/fonts/ build/vvelicodnii-cv.pdf
       - name: Build web page
         run: |
           uv run web/render.py web/index.html.j2 data.yaml - | minify --html > build/index.html
