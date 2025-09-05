@@ -1,6 +1,6 @@
 #import "resume.typ": *
 
-#let data = yaml("data.yaml")
+#let data = yaml("../data.yaml")
 
 #let render-markdown-links(text) = {
   let link_regex = regex("\[([^\]]+)\]\(([^)]+)\)")
