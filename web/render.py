@@ -10,6 +10,7 @@ import yaml
 import re
 import argparse
 import os
+import sys
 from jinja2 import Environment, FileSystemLoader
 
 def render_markdown_links(text):
@@ -49,7 +50,7 @@ def main():
     else:
         with open(args.output, 'w') as f:
             f.write(html_content)
-        print(f"Successfully rendered {args.template} -> {args.output}")
+        print(f"Successfully rendered {args.template} -> {args.output}", file=sys.stderr)
 
 if __name__ == '__main__':
     main()
