@@ -44,10 +44,12 @@ def main():
     html_content = template.render(**data)
 
     # Write output
-    with open(args.output, 'w') as f:
-        f.write(html_content)
-
-    print(f"Successfully rendered {args.template} -> {args.output}")
+    if args.output == '-':
+        print(html_content)
+    else:
+        with open(args.output, 'w') as f:
+            f.write(html_content)
+        print(f"Successfully rendered {args.template} -> {args.output}")
 
 if __name__ == '__main__':
     main()

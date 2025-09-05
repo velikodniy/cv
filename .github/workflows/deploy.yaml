@@ -30,12 +30,11 @@ jobs:
           mkdir build
       - name: Build Typst files
         run: |
-          typst compile main.typ --font-path fonts/ build/vvelicodnii-cv.pdf
+          typst compile --root . typst/main.typ --font-path typst/fonts/ build/vvelicodnii-cv.pdf
       - name: Build web page
         run: |
-          uv run render.py index.html.j2 data.yaml index.html
-          minify index.html > build/index.html
-          minify styles.css > build/styles.css
+          uv run web/render.py web/index.html.j2 data.yaml - | minify --html > build/index.html
+          minify web/styles.css > build/styles.css
           cp vadim.jpeg build/
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
