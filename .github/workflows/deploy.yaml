@@ -33,9 +33,10 @@ jobs:
           typst compile --root . typst/cv.typ --font-path typst/fonts/ build/vvelicodnii-cv.pdf
       - name: Build web page
         run: |
-          uv run web/render.py web/index.html.j2 data.yaml - | minify --html > build/index.html
+          uv run scripts/render.py web/index.html.j2 data.yaml - | minify --html > build/index.html
           minify web/styles.css > build/styles.css
           cp vadim.jpeg build/
+          uv run scripts/generate_favicons.py vadim.jpeg --output-dir build
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
