@@ -202,6 +202,48 @@
   ]
 }
 
+#let education(
+  degree: none,
+  institution: "",
+  date: "",
+  body
+) = {
+  block(above: 1em, below: 0.65em)[
+    #pad[
+      #block[
+        #set block(
+          above: 0.7em,
+          below: 0.7em,
+        )
+        #pad[
+          #show-both-sides[
+            == #degree
+          ][
+            #text(weight: "light", size: 9pt)[#date]
+          ]
+        ]
+      ]
+      #show-both-sides[
+        === #institution
+      ][
+        #text("")
+      ]
+    ]
+  ]
+  block[
+    #set text(
+      size: 10pt,
+      style: "normal",
+      weight: "light",
+      fill: colors.primary,
+    )
+    #set par(leading: 0.65em)
+    #block(above: 0.5em)[
+      #body
+    ]
+  ]
+}
+
 #let skill(category, items) = {
   set block(below: 0.65em)
   set pad(top: 2pt)
@@ -275,9 +317,9 @@
 = Education
 
 #for edu in data.education [
-  #job(
-    position: edu.degree,
-    company: edu.institution,
+  #education(
+    degree: edu.degree,
+    institution: edu.institution,
     date: date-range(edu.dates),
   )[
     #if "details" in edu [
