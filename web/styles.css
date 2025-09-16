@@ -473,11 +473,11 @@ a:visited {
 
 /* Footer components */
 .footer {
-  text-align: right;
+  text-align: center;
   font-size: var(--font-size-xs);
   color: var(--color-muted);
-  margin-top: var(--space-2xl);
-  padding-top: var(--space-xl);
+  margin: var(--space-lg) var(--space-md) var(--space-md);
+  padding-top: var(--space-sm);
   border-top: 1px solid var(--color-border);
 }
 

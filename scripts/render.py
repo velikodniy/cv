@@ -15,6 +15,7 @@ a custom filter for converting markdown-style links to HTML.
 import argparse
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Union
 
@@ -81,6 +82,7 @@ def setup_jinja_environment(template_path: Path) -> tuple[Environment, str]:
         lstrip_blocks=True,
     )
     env.filters["markdown_links"] = render_markdown_links
+    env.globals["today"] = datetime.now().strftime("%b %d, %Y")
 
     return env, template_name
 
