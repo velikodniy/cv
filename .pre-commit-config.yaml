@@ -9,3 +9,9 @@ repos:
         args: ["--autofix", "--no-sort-keys"]
       - id: check-yaml
       - id: check-json
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.0
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
