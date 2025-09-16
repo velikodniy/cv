@@ -116,6 +116,13 @@
                         <li class="highlights-list__item">{{ highlight | markdown_links | safe }}</li>
                         {% endfor %}
                     </ul>
+                    {% if job.techStack %}
+                    <div class="tech-stack">
+                        {% for tech in job.techStack %}
+                        <span class="tech-chip">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </article>
                 {% endfor %}
                 </div>

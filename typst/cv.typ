@@ -312,6 +312,10 @@
         - #render-markdown-links(h)
       ]
     ]
+    #if "techStack" in exp [
+
+      Tech stack: #exp.techStack.join(", ")
+    ]
   ]
 }
 
