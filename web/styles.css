@@ -23,6 +23,7 @@
 
   /* Typography */
   --font-family-base: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-size-2xs: 0.625rem;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -412,6 +413,26 @@ a:visited {
   color: var(--color-secondary);
   line-height: 1.7;
   font-size: var(--font-size-base);
+}
+
+/* Tech stack components */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.tech-chip {
+  display: inline-block;
+  background-color: var(--color-surface);
+  color: var(--color-secondary);
+  padding: 0.125rem var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border: 1px solid var(--color-muted);
+  cursor: default;
 }
 
 /* Action components */
