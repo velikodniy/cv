@@ -86,6 +86,7 @@
   set document(
     author: author,
     title: author + "'s Curriculum Vitae",
+    keywords: ("resume", "cv", "curriculum vitae"),
   )
 
   set page(
