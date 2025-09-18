@@ -333,7 +333,7 @@
       ]
     ]
     #if "gpa" in edu [
-      - GPA: #edu.gpa
+      - GPA: #edu.gpa.value/#edu.gpa.max
     ]
   ]
 ]

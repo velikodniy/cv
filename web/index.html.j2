@@ -155,7 +155,7 @@
                         {% for detail in edu.details %}
                         <li class="highlights-list__item">{{ detail | markdown_links | safe }}</li>
                         {% endfor %}
-                        <li class="highlights-list__item">GPA: {{ edu.gpa }}</li>
+                        <li class="highlights-list__item">GPA: {{ edu.gpa.value }}/{{ edu.gpa.max }}</li>
                     </ul>
                 </article>
                 {% endfor %}
