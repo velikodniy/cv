@@ -479,3 +479,8 @@ a:hover {
 a:visited {
   color: var(--color-accent);
 }
+
+/* Patent titles */
+cite {
+  font-style: normal;
+}
