@@ -142,7 +142,7 @@
                 {% for edu in education %}
                 <article class="experience-item" itemscope itemtype="https://schema.org/EducationalOccupationalCredential" itemprop="hasCredential">
                     <header class="experience-item__header">
-                        <h3 class="experience-item__title" itemprop="name">{{ edu.degree }}</h3>
+                        <h3 class="experience-item__title" itemprop="name">{{ edu.major }}</h3>
                         <time class="experience-item__date" itemprop="dateCreated">{{ edu.dates.start }} — {{ edu.dates.end }}</time>
                     </header>
                     <div class="experience-item__meta">
@@ -152,9 +152,10 @@
                         <span></span>
                     </div>
                     <ul class="highlights-list" itemprop="description">
-                        {% for detail in edu.details %}
-                        <li class="highlights-list__item">{{ detail | markdown_links | safe }}</li>
+                        {% for highlight in edu.highlights %}
+                        <li class="highlights-list__item">{{ highlight | markdown_links | safe }}</li>
                         {% endfor %}
+                        <li class="highlights-list__item">{{ edu.degree }} degree{% if edu.honor | default(false) %} (with honor){% endif %}</li>
                         <li class="highlights-list__item">GPA: {{ edu.gpa.value }}/{{ edu.gpa.max }}</li>
                     </ul>
                 </article>

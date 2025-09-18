@@ -323,15 +323,16 @@
 
 #for edu in data.education [
   #education(
-    degree: edu.degree,
+    degree: edu.major,
     institution: edu.institution,
     date: date-range(edu.dates),
   )[
-    #if "details" in edu [
-      #for detail in edu.details [
-        - #render-markdown-links(detail)
+    #if "highlights" in edu [
+      #for highlight in edu.highlights [
+        - #render-markdown-links(highlight)
       ]
     ]
+    - #edu.degree degree#if "honor" in edu and edu.honor [ (with honor)]
     #if "gpa" in edu [
       - GPA: #edu.gpa.value/#edu.gpa.max
     ]
