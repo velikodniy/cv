@@ -282,11 +282,11 @@ h6 {
 }
 
 .experience-item__company {
-  font-variant: small-caps;
+  text-transform: uppercase;
   color: var(--color-secondary);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.05em;
-  font-size: var(--font-size-base);
+  font-size: 0.9em;
 }
 
 .experience-item__date {
