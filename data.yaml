@@ -77,15 +77,16 @@ experience:
       - Research and development in computational fluid dynamics, deep learning, evolutionary algorithms.
 education:
   - institution: Shevchenko Transnistria State University
-    degree: Applied Mathematics and Computer Science
+    major: Applied Mathematics and Computer Science
+    degree: Specialist (equivalent to MSc)
+    honor: true
     dates:
       start: Sep 2001
       end: Sep 2006
     gpa:
       value: 4.9
       max: 5.0
-    details:
-      - Specialist degree (with honor)
+    highlights: []
 skills:
   languages:
     - name: English
