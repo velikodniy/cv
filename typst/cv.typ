@@ -269,11 +269,15 @@
   ]
 }
 
-#let date-range(range) = [
+#let date-range(range, graduated: true) = [
   #if "end" in range [
     #range.start --- #range.end
   ] else [
-    #range.start --- #emph("Present")
+    #if graduated [
+      #range.start --- #emph("Present")
+    ] else [
+      #range.start ---
+    ]
   ]
 ]
 
@@ -325,14 +329,14 @@
   #education(
     degree: edu.major,
     institution: edu.institution,
-    date: date-range(edu.dates),
+    date: date-range(edu.dates, graduated: if "graduated" in edu { edu.graduated } else { true }),
   )[
     #if "highlights" in edu [
       #for highlight in edu.highlights [
         - #render-markdown-links(highlight)
       ]
     ]
-    - #edu.degree degree#if "honor" in edu and edu.honor [ (with honor)]
+    - #edu.degree degree#if "graduated" in edu and not edu.graduated [ (not graduated)]#if "honor" in edu and edu.honor [ — #emph[with honor]]
     #if "gpa" in edu [
       - GPA: #edu.gpa.value/#edu.gpa.max
     ]

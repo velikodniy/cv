@@ -155,8 +155,10 @@
                         {% for highlight in edu.highlights %}
                         <li class="highlights-list__item">{{ highlight | markdown_links | safe }}</li>
                         {% endfor %}
-                        <li class="highlights-list__item">{{ edu.degree }} degree{% if edu.honor | default(false) %} (with honor){% endif %}</li>
+                        <li class="highlights-list__item">{{ edu.degree }} degree{% if edu.graduated | default(true) == false %} (not graduated){% endif %}{% if edu.honor | default(false) %} — <em>with honor</em>{% endif %}</li>
+                        {% if edu.gpa %}
                         <li class="highlights-list__item">GPA: {{ edu.gpa.value }}/{{ edu.gpa.max }}</li>
+                        {% endif %}
                     </ul>
                 </article>
                 {% endfor %}
