@@ -25,6 +25,7 @@
     <meta name="twitter:title" content="{{ author }} - Resume">
     <meta name="twitter:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
     <meta name="twitter:image" content="{{ base_url }}/vadim.jpeg">
+    <meta name="twitter:image:alt" content="Photo of {{ author }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -105,9 +106,8 @@
 
             <section class="section" aria-labelledby="experience-title">
                 <h2 id="experience-title" class="section__title">Experience</h2>
-                <div itemprop="hasOccupation" itemscope itemtype="https://schema.org/Occupation">
                 {% for job in experience %}
-                <article class="experience-item">
+                <article class="experience-item" itemprop="hasOccupation" itemscope itemtype="https://schema.org/Occupation">
                     <header class="experience-item__header">
                         <h3 class="experience-item__title" itemprop="name">{{ job.position }}</h3>
                         <span class="experience-item__location">{{ job.location }}</span>
@@ -116,7 +116,10 @@
                         <p class="experience-item__company" itemprop="occupationLocation" itemscope itemtype="https://schema.org/Place">
                             <span itemprop="name">{{ job.company }}</span>
                         </p>
-                        <time class="experience-item__date">{{ job.dates.start }} — {{ job.dates.end | default("Present") }}</time>
+                        <time class="experience-item__date" itemprop="jobStartDate" datetime="{{ job.dates.start }}">
+                            {{ job.dates.start }} — {{ job.dates.end | default("Present") }}
+                        </time>
+                        {% if job.dates.end %}<meta itemprop="jobEndDate" content="{{ job.dates.end }}">{% endif %}
                     </div>
                     <ul class="highlights-list" itemprop="description">
                         {% for highlight in job.highlights %}
@@ -126,13 +129,12 @@
                     {% if job.techStack %}
                     <div class="tech-stack">
                         {% for tech in job.techStack %}
-                        <span class="tech-chip">{{ tech }}</span>
+                        <span class="tech-chip" itemprop="skills">{{ tech }}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
                 </article>
                 {% endfor %}
-                </div>
             </section>
 
             <section class="section" aria-labelledby="education-title">
@@ -163,8 +165,8 @@
                 <h2 id="patents-title" class="section__title">Patents</h2>
                 <ul class="highlights-list">
                     {% for patent in patents %}
-                    <li class="highlights-list__item">
-                        {{ patent.title }} (<a href="{{ patent.link }}" target="_blank" rel="noopener nofollow">{{ patent.code }}</a>)
+                    <li class="highlights-list__item" itemscope itemtype="https://schema.org/CreativeWork">
+                        <cite itemprop="name">{{ patent.title }}</cite> (<a href="{{ patent.link }}" target="_blank" rel="noopener nofollow" itemprop="url">{{ patent.code }}</a>)
                     </li>
                     {% endfor %}
                 </ul>
