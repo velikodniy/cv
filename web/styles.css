@@ -13,7 +13,7 @@
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
 
-  /* Spacing scale */
+  /* Spacing */
   --space-2xs: 0.125rem;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -22,7 +22,7 @@
   --space-xl: 2rem;
   --space-2xl: 3rem;
 
-  /* Typography scale */
+  /* Typography */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -31,13 +31,15 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
-  /* Border radius */
+  /* Effects */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-full: 50%;
-
-  /* Effects */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-focus: 0 0 0 4px color-mix(in srgb, var(--color-accent) 20%, transparent);
   --transition: 150ms ease;
@@ -55,7 +57,7 @@
   --color-accent-hover: #93c5fd;
 }
 
-/* Modern CSS reset */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -70,6 +72,7 @@ body {
   line-height: 1.6;
   font-family: var(--font-family);
   font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
   background-color: var(--color-background);
   color: var(--color-primary);
   transition: background-color var(--transition), color var(--transition);
@@ -104,7 +107,6 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* Focus styles for accessibility */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
@@ -131,7 +133,7 @@ h6 {
   padding: var(--space-xl);
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
   .resume {
     flex-direction: column;
@@ -200,7 +202,7 @@ h6 {
 
 .profile__name {
   font-size: var(--font-size-3xl);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-sm);
   color: var(--color-primary);
 }
@@ -211,7 +213,7 @@ h6 {
   margin-bottom: var(--space-md);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .section {
@@ -220,7 +222,7 @@ h6 {
 
 .section__title {
   font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-sm);
   color: var(--color-primary);
@@ -239,7 +241,7 @@ h6 {
 
 .section__subtitle {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: var(--space-md);
   border-bottom: 1px solid var(--color-border);
   padding-bottom: var(--space-sm);
@@ -260,13 +262,13 @@ h6 {
 
 .experience-item__title {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
 }
 
 .experience-item__location {
   color: var(--color-muted);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-size-base);
   white-space: nowrap;
 }
@@ -282,7 +284,7 @@ h6 {
 .experience-item__company {
   font-variant: small-caps;
   color: var(--color-secondary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.05em;
   font-size: var(--font-size-base);
 }
@@ -347,7 +349,7 @@ h6 {
 }
 
 .personal-info__label {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-secondary);
   display: block;
   margin-bottom: var(--space-xs);
@@ -376,7 +378,7 @@ h6 {
   left: 0;
   top: 0;
   color: var(--color-accent);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .content-text {
@@ -398,7 +400,7 @@ h6 {
   padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   border: 1px solid var(--color-muted);
 }
 
@@ -440,7 +442,7 @@ h6 {
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   gap: var(--space-xs);
   box-shadow: var(--shadow-sm);
 }
