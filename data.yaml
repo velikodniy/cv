@@ -80,6 +80,7 @@ education:
     major: Applied Mathematics and Computer Science
     degree: Specialist (equivalent to MSc)
     honor: true
+    graduated: true
     dates:
       start: Sep 2001
       end: Jul 2006
