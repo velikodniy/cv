@@ -183,14 +183,13 @@
     </footer>
 
     <div class="actions" role="toolbar" aria-label="Page actions">
-            <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle between light and dark theme" aria-pressed="false">
-                <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
-            </button>
-            <a href="vvelicodnii-cv.pdf" download="vvelicodnii-cv.pdf" class="btn btn--primary" type="application/pdf" aria-label="Download CV as PDF">
-                <i class="fas fa-download" aria-hidden="true"></i>
-                <span>Download CV</span>
-            </a>
-        </div>
+        <button type="button" class="btn btn--icon btn--secondary" onclick="toggleTheme()" aria-label="Toggle between light and dark theme" aria-pressed="false">
+            <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <a href="{{ pdf_filename }}" download="{{ pdf_filename }}" class="btn btn--primary" type="application/pdf" aria-label="Download CV as PDF">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span>Download CV</span>
+        </a>
     </div>
 
     <script>
