@@ -14,9 +14,9 @@
     <meta property="og:type" content="profile">
     <meta property="og:title" content="{{ author }} - Resume">
     <meta property="og:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
-    <meta property="og:image" content="{{ base_url }}/vadim.jpeg">
+    <meta property="og:image" content="{{ base_url }}/{{ photo }}">
     <meta property="og:url" content="{{ base_url }}">
-    <meta property="og:logo" content="{{ base_url }}/vadim.jpeg">
+    <meta property="og:logo" content="{{ base_url }}/{{ photo }}">
     <meta property="profile:first_name" content="{{ author.split()[0] }}">
     <meta property="profile:last_name" content="{{ author.split()[-1] }}">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ author }} - Resume">
     <meta name="twitter:description" content="{{ author }}'s professional resume - {{ positions | join(', ') }}">
-    <meta name="twitter:image" content="{{ base_url }}/vadim.jpeg">
+    <meta name="twitter:image" content="{{ base_url }}/{{ photo }}">
     <meta name="twitter:image:alt" content="Photo of {{ author }}">
 
     <!-- Favicon -->
@@ -51,7 +51,7 @@
     <div class="resume" itemscope itemtype="https://schema.org/Person">
         <aside class="resume__sidebar">
             <header class="profile">
-                <img src="vadim.jpeg" alt="Photo of {{ author }}" class="profile__avatar" width="192" height="192" loading="eager" itemprop="image">
+                <img src="{{ photo }}" alt="Photo of {{ author }}" class="profile__avatar" width="192" height="192" loading="eager" itemprop="image">
                 <h1 class="profile__name" itemprop="name">{{ author }}</h1>
                 <p class="profile__title" itemprop="jobTitle">{{ positions | join(" · ") }}</p>
             </header>
