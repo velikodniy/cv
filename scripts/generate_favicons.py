@@ -209,10 +209,11 @@ Generated files:
 
     try:
         generate_favicon_set(args.input_image, args.output_dir, not args.no_enhance)
-    except (FileNotFoundError, ValueError, OSError):
+    except (FileNotFoundError, ValueError, OSError) as e:
+        print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
-    except Exception:
-        # Catch any unexpected errors and exit gracefully
+    except Exception as e:
+        print(f"Unexpected error: {e}", file=sys.stderr)
         sys.exit(1)
 
 
