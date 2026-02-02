@@ -1,7 +1,8 @@
 import { parseArgs } from "jsr:@std/cli/parse-args";
 import sharp from "npm:sharp";
 import { join } from "node:path";
-import { ensureDir } from "jsr:@std/fs";
+import { ensureDir, copy } from "jsr:@std/fs";
+import { parse as parseYaml } from "jsr:@std/yaml";
 
 const FAVICON_SPECS = [
   { size: 16, name: "favicon-16x16.png" },
@@ -14,11 +15,22 @@ const FAVICON_SPECS = [
 const ICO_SIZES = [16, 32];
 
 async function generateFavicons(
-  inputPath: string,
+  yamlPath: string,
   outputDir: string,
   enhance: boolean = true
 ) {
   await ensureDir(outputDir);
+
+  const yamlContent = await Deno.readTextFile(yamlPath);
+  const data = parseYaml(yamlContent) as { photo: string };
+
+  if (!data.photo) {
+    throw new Error(`"photo" field not found in ${yamlPath}`);
+  }
+
+  const inputPath = data.photo;
+
+  console.log(`Processing image: ${inputPath}`);
 
   const image = sharp(inputPath);
   const metadata = await image.metadata();
@@ -38,7 +50,7 @@ async function generateFavicons(
     })
     .resize(size, size);
 
-  // Enhance if requested (approximating PIL enhancements)
+  // Enhance if requested
   if (enhance) {
     pipeline.modulate({
       brightness: 1.0,
@@ -66,7 +78,6 @@ async function generateFavicons(
     }
 
     if (spec.size <= 32) {
-      // Apply unsharp masking for small sizes
       resized = resized.sharpen({
         sigma: 0.5,
         m1: 0.5,
@@ -93,11 +104,13 @@ async function generateFavicons(
 
   await writeIco(join(outputDir, "favicon.ico"), icoBuffers);
   console.log("Generated favicon.ico");
+
+  const destPath = join(outputDir, data.photo);
+  await copy(inputPath, destPath, { overwrite: true });
+  console.log(`Copied ${inputPath} to ${destPath}`);
 }
 
-// Simple ICO writer helper
 async function writeIco(path: string, pngBuffers: Uint8Array[]) {
-  // https://en.wikipedia.org/wiki/ICO_(file_format)
   const count = pngBuffers.length;
   const headerLen = 6;
   const directoryLen = 16 * count;
@@ -151,16 +164,16 @@ async function main() {
   });
 
   if (args._.length < 1) {
-    console.error("Usage: generate-favicons.ts <input-image> [options]");
+    console.error("Usage: generate-favicons.ts <data.yaml> [options]");
     Deno.exit(1);
   }
 
-  const input = String(args._[0]);
+  const yamlFile = String(args._[0]);
   const output = args["output-dir"];
   const enhance = !args["no-enhance"];
 
   try {
-    await generateFavicons(input, output, enhance);
+    await generateFavicons(yamlFile, output, enhance);
   } catch (error) {
     console.error("Error:", error);
     Deno.exit(1);

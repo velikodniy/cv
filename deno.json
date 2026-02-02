@@ -6,7 +6,7 @@
     "preview": "deno run -A --node-modules-dir npm:astro preview",
     "astro": "deno run -A --node-modules-dir npm:astro",
     "typst": "mkdir -p public && typst compile --root . typst/cv.typ --font-path typst/fonts/ public/vvelicodnii-cv.pdf",
-    "favicons": "mkdir -p public && deno run -A --node-modules-dir scripts/generate-favicons.ts vadim.jpeg --output-dir public/"
+    "favicons": "mkdir -p public && deno run -A --node-modules-dir scripts/generate-favicons.ts data.yaml --output-dir public/"
   },
   "imports": {
     "astro": "npm:astro@^5.1.1",
