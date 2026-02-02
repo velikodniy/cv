@@ -1,4 +1,3 @@
-import { parseArgs } from "@std/cli/parse-args";
 import sharp from "sharp";
 import { join } from "node:path";
 import { copy, ensureDir } from "@std/fs";
@@ -13,19 +12,17 @@ const FAVICON_SPECS = [
 ];
 
 const ICO_SIZES = [16, 32];
+const OUTPUT_DIR = "public";
+const YAML_FILE = "data.yaml";
 
-async function generateFavicons(
-  yamlPath: string,
-  outputDir: string,
-  enhance: boolean = true,
-) {
-  await ensureDir(outputDir);
+async function generateFavicons() {
+  await ensureDir(OUTPUT_DIR);
 
-  const yamlContent = await Deno.readTextFile(yamlPath);
+  const yamlContent = await Deno.readTextFile(YAML_FILE);
   const data = parseYaml(yamlContent) as { photo: string };
 
   if (!data.photo) {
-    throw new Error(`"photo" field not found in ${yamlPath}`);
+    throw new Error(`"photo" field not found in ${YAML_FILE}`);
   }
 
   const inputPath = data.photo;
@@ -50,20 +47,18 @@ async function generateFavicons(
     })
     .resize(size, size);
 
-  // Enhance if requested
-  if (enhance) {
-    pipeline.modulate({
-      brightness: 1.0,
-      saturation: 1.0,
-    }).sharpen({
-      sigma: 1.0,
-      m1: 1.0,
-      m2: 0,
-      x1: 2,
-      y2: 10,
-      y3: 20,
-    });
-  }
+  // Enhance
+  pipeline.modulate({
+    brightness: 1.0,
+    saturation: 1.0,
+  }).sharpen({
+    sigma: 1.0,
+    m1: 1.0,
+    m2: 0,
+    x1: 2,
+    y2: 10,
+    y3: 20,
+  });
 
   const buffer = await pipeline.toBuffer();
 
@@ -73,9 +68,8 @@ async function generateFavicons(
       kernel: sharp.kernel.lanczos3,
     });
 
-    if (enhance) {
-      resized = resized.linear(1.1, -(128 * 1.1) + 128);
-    }
+    // Enhance contrast
+    resized = resized.linear(1.1, -(128 * 1.1) + 128);
 
     if (spec.size <= 32) {
       resized = resized.sharpen({
@@ -84,7 +78,7 @@ async function generateFavicons(
       });
     }
 
-    await resized.toFile(join(outputDir, spec.name));
+    await resized.toFile(join(OUTPUT_DIR, spec.name));
     console.log(`Generated ${spec.name}`);
   }
 
@@ -102,10 +96,10 @@ async function generateFavicons(
     icoBuffers.push(await resized.png().toBuffer());
   }
 
-  await writeIco(join(outputDir, "favicon.ico"), icoBuffers);
+  await writeIco(join(OUTPUT_DIR, "favicon.ico"), icoBuffers);
   console.log("Generated favicon.ico");
 
-  const destPath = join(outputDir, data.photo);
+  const destPath = join(OUTPUT_DIR, data.photo);
   await copy(inputPath, destPath, { overwrite: true });
   console.log(`Copied ${inputPath} to ${destPath}`);
 }
@@ -159,31 +153,6 @@ async function writeIco(path: string, pngBuffers: Uint8Array[]) {
   file.close();
 }
 
-async function main() {
-  const args = parseArgs(Deno.args, {
-    string: ["output-dir"],
-    boolean: ["no-enhance"],
-    alias: { o: "output-dir" },
-    default: { "output-dir": "." },
-  });
-
-  if (args._.length < 1) {
-    console.error("Usage: generate-favicons.ts <data.yaml> [options]");
-    Deno.exit(1);
-  }
-
-  const yamlFile = String(args._[0]);
-  const output = args["output-dir"];
-  const enhance = !args["no-enhance"];
-
-  try {
-    await generateFavicons(yamlFile, output, enhance);
-  } catch (error) {
-    console.error("Error:", error);
-    Deno.exit(1);
-  }
-}
-
 if (import.meta.main) {
-  main();
+  await generateFavicons();
 }
