@@ -1,8 +1,8 @@
-import { parseArgs } from "jsr:@std/cli/parse-args";
-import sharp from "npm:sharp";
+import { parseArgs } from "@std/cli/parse-args";
+import sharp from "sharp";
 import { join } from "node:path";
-import { ensureDir, copy } from "jsr:@std/fs";
-import { parse as parseYaml } from "jsr:@std/yaml";
+import { copy, ensureDir } from "@std/fs";
+import { parse as parseYaml } from "@std/yaml";
 
 const FAVICON_SPECS = [
   { size: 16, name: "favicon-16x16.png" },
@@ -17,7 +17,7 @@ const ICO_SIZES = [16, 32];
 async function generateFavicons(
   yamlPath: string,
   outputDir: string,
-  enhance: boolean = true
+  enhance: boolean = true,
 ) {
   await ensureDir(outputDir);
 
@@ -74,7 +74,7 @@ async function generateFavicons(
     });
 
     if (enhance) {
-       resized = resized.linear(1.1, -(128 * 1.1) + 128);
+      resized = resized.linear(1.1, -(128 * 1.1) + 128);
     }
 
     if (spec.size <= 32) {
@@ -96,7 +96,7 @@ async function generateFavicons(
     });
 
     if (size <= 32) {
-       resized.sharpen({ sigma: 0.5 });
+      resized.sharpen({ sigma: 0.5 });
     }
 
     icoBuffers.push(await resized.png().toBuffer());
@@ -148,7 +148,11 @@ async function writeIco(path: string, pngBuffers: Uint8Array[]) {
     offset += size;
   }
 
-  const file = await Deno.open(path, { write: true, create: true, truncate: true });
+  const file = await Deno.open(path, {
+    write: true,
+    create: true,
+    truncate: true,
+  });
   await file.write(header);
   for (const dir of directories) await file.write(dir);
   for (const buf of validBuffers) await file.write(buf);

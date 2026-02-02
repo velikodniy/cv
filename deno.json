@@ -9,6 +9,9 @@
     "favicons": "mkdir -p public && deno run -A --node-modules-dir scripts/generate-favicons.ts data.yaml --output-dir public/"
   },
   "imports": {
+    "@std/cli": "jsr:@std/cli@^1.0.27",
+    "@std/fs": "jsr:@std/fs@^1.0.22",
+    "@std/yaml": "jsr:@std/yaml@^1.0.11",
     "astro": "npm:astro@^5.1.1",
     "@astrojs/check": "npm:@astrojs/check@^0.9.6",
     "typescript": "npm:typescript@^5.7.3",

@@ -5,7 +5,12 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+      - id: check-json
       - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: destroyed-symlinks
 
   - repo: local
     hooks:
@@ -13,16 +18,15 @@ repos:
         name: Deno Format
         entry: deno fmt
         language: system
-        types: [javascript]
-        files: \.(js|ts|jsx|tsx|json)$
+        files: \.(js|ts|jsx|tsx|json|css|md)$
       - id: deno-lint
         name: Deno Lint
         entry: deno lint
         language: system
-        types: [javascript]
         files: \.(js|ts|jsx|tsx)$
-      - id: deno-check
-        name: Deno Check
+      - id: astro-check
+        name: Astro Check
         entry: deno task check
         language: system
         pass_filenames: false
+        files: \.(astro|js|ts|jsx|tsx|json)$
