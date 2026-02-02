@@ -1,0 +1,54 @@
+---
+---
+
+<button
+  type="button"
+  class="btn btn--icon btn--secondary"
+  id="theme-toggle"
+  aria-label="Toggle between light and dark theme"
+  aria-pressed="false"
+>
+  <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
+</button>
+
+<script>
+  function setupTheme() {
+    const html = document.documentElement;
+    const themeButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+
+    if (!themeButton || !themeIcon) return;
+
+    const updateIcon = () => {
+      const currentTheme = html.getAttribute("data-theme");
+      if (currentTheme === "dark") {
+        themeIcon.className = "fas fa-sun";
+        themeButton.setAttribute("aria-pressed", "true");
+      } else {
+        themeIcon.className = "fas fa-moon";
+        themeButton.setAttribute("aria-pressed", "false");
+      }
+    };
+
+    // Initial state
+    updateIcon();
+
+    themeButton.addEventListener("click", () => {
+      const currentTheme = html.getAttribute("data-theme");
+      if (currentTheme === "dark") {
+        html.removeAttribute("data-theme");
+        localStorage.setItem("theme", "light");
+      } else {
+        html.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+      }
+      updateIcon();
+    });
+  }
+
+  // Run on page load
+  setupTheme();
+
+  // Handle view transitions if enabled later
+  document.addEventListener("astro:page-load", setupTheme);
+</script>

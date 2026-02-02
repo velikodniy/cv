@@ -1,0 +1,89 @@
+---
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  author: string;
+  photo: string;
+  baseUrl: string;
+  pdfFilename: string;
+}
+
+const { title, description, author, photo, baseUrl, pdfFilename } = Astro.props;
+const photoUrl = `${baseUrl}/${photo}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={photoUrl} />
+    <meta property="og:url" content={baseUrl} />
+    <meta property="og:logo" content={photoUrl} />
+    <meta property="profile:first_name" content={author.split(" ")[0]} />
+    <meta property="profile:last_name" content={author.split(" ").slice(-1)[0]} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={photoUrl} />
+    <meta name="twitter:image:alt" content={`Photo of ${author}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="resume" itemscope itemtype="https://schema.org/Person">
+      <slot />
+    </div>
+
+    <footer class="footer">
+      <small>
+        Updated on {new Date().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })} • Based on <a href="https://github.com/velikodniy/cv" target="_blank" rel="noopener">velikodniy/cv</a>
+      </small>
+    </footer>
+
+    <div class="actions" role="toolbar" aria-label="Page actions">
+      <slot name="actions" />
+
+      <a
+        href={pdfFilename}
+        download={pdfFilename}
+        class="btn btn--primary"
+        type="application/pdf"
+        aria-label="Download CV as PDF"
+      >
+        <i class="fas fa-download" aria-hidden="true"></i>
+        <span>Download CV</span>
+      </a>
+    </div>
+  </body>
+</html>
