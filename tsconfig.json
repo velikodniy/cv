@@ -16,5 +16,6 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "astro"
-  }
+  },
+  "exclude": ["scripts"]
 }
