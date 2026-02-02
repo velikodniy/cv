@@ -1,24 +1,24 @@
 {
   "tasks": {
-    "dev": "deno run -A --node-modules-dir npm:astro dev",
-    "check": "deno run -A --node-modules-dir npm:astro check",
-    "build": "deno task pdf && deno task favicons && deno run -A --node-modules-dir npm:astro build",
-    "preview": "deno run -A --node-modules-dir npm:astro preview",
-    "astro": "deno run -A --node-modules-dir npm:astro",
+    "dev": "deno run -A npm:astro dev",
+    "check": "deno run -A npm:astro check",
+    "build": "deno task pdf && deno task favicons && deno run -A npm:astro build",
+    "preview": "deno run -A npm:astro preview",
+    "astro": "deno run -A npm:astro",
     "pdf": "deno run -A scripts/build-pdf.ts",
-    "favicons": "mkdir -p public && deno run -A --node-modules-dir scripts/generate-favicons.ts"
+    "favicons": "mkdir -p public && deno run -A scripts/generate-favicons.ts"
   },
   "imports": {
     "@std/cli": "jsr:@std/cli@^1.0.27",
     "@std/fs": "jsr:@std/fs@^1.0.22",
     "@std/yaml": "jsr:@std/yaml@^1.0.11",
-    "astro": "npm:astro@^5.1.1",
+    "astro": "npm:astro@^5.17.1",
     "@astrojs/check": "npm:@astrojs/check@^0.9.6",
-    "typescript": "npm:typescript@^5.7.3",
-    "sharp": "npm:sharp@^0.33.5",
-    "js-yaml": "npm:js-yaml@^4.1.0",
+    "typescript": "npm:typescript@^5.9.3",
+    "sharp": "npm:sharp@^0.34.5",
+    "js-yaml": "npm:js-yaml@^4.1.1",
     "@types/js-yaml": "npm:@types/js-yaml@^4.0.9",
-    "@types/node": "npm:@types/node@^22.10.7"
+    "@types/node": "npm:@types/node@^25.2.0"
   },
   "nodeModulesDir": "auto",
   "compilerOptions": {
