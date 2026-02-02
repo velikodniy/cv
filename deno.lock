@@ -5,6 +5,7 @@
     "jsr:@std/fs@*": "1.0.21",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.4": "1.1.4",
+    "jsr:@std/yaml@*": "1.0.11",
     "npm:@astrojs/check@~0.9.6": "0.9.6_typescript@5.9.3",
     "npm:@types/js-yaml@^4.0.9": "4.0.9",
     "npm:@types/node@^22.10.7": "22.19.7",
@@ -34,6 +35,9 @@
       "dependencies": [
         "jsr:@std/internal"
       ]
+    },
+    "@std/yaml@1.0.11": {
+      "integrity": "bd139ce77f2d06cbed3713c8b26d301d2a2e12ecc7986130a268107e212143ee"
     }
   },
   "npm": {
