@@ -1,0 +1,57 @@
+---
+import fs from "node:fs/promises";
+import yaml from "js-yaml";
+import Layout from "@/layouts/Layout.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import Main from "@/components/Main.astro";
+import Experience from "@/components/Experience.astro";
+import Education from "@/components/Education.astro";
+import Patents from "@/components/Patents.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import type { ResumeData } from "@/types";
+
+// Load data
+const dataFile = await fs.readFile("data.yaml", "utf8");
+const data = yaml.load(dataFile) as ResumeData;
+
+const {
+  author,
+  base_url,
+  photo,
+  pdf_filename,
+  about,
+  positions,
+  location,
+  contacts,
+  experience,
+  education,
+  skills,
+  patents,
+} = data;
+---
+
+<Layout
+  title={`${author} - Resume`}
+  description={`${author}'s professional resume - ${positions.join(", ")}`}
+  author={author}
+  photo={photo}
+  baseUrl={base_url}
+  pdfFilename={pdf_filename}
+>
+  <Sidebar
+    author={author}
+    photo={photo}
+    positions={positions}
+    contacts={contacts}
+    location={location}
+    skills={skills}
+  />
+
+  <Main about={about}>
+    <Experience experience={experience} />
+    <Education education={education} />
+    <Patents patents={patents} />
+  </Main>
+
+  <ThemeToggle slot="actions" />
+</Layout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  about: string;
+}
+
+const { about } = Astro.props;
+---
+
+<main class="resume__main">
+  <section class="section" aria-labelledby="about-title">
+    <h2 id="about-title" class="section__title">About Me</h2>
+    <p class="content-text" itemprop="description">{about}</p>
+  </section>
+
+  <slot />
+</main>
