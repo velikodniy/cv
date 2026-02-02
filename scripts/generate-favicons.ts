@@ -1,6 +1,6 @@
 import { parseArgs } from "jsr:@std/cli/parse-args";
 import sharp from "npm:sharp";
-import { join, dirname } from "node:path";
+import { join } from "node:path";
 import { ensureDir } from "jsr:@std/fs";
 
 const FAVICON_SPECS = [
