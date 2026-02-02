@@ -10,23 +10,24 @@ Personal CV setup with PDF and web versions generated from YAML data.
 
 - `data.yaml` contains all my CV content
 - Typst generates PDF from `typst/cv.typ`
-- Jinja2 template renders HTML from `web/index.html.j2`
+- Astro generates HTML from `src/` using `data.yaml`
+- Deno handles task running and TypeScript execution
 - GitHub Actions builds and deploys to Cloudflare Pages on push to main
 
 ## Local commands
 
 ```bash
-# Build PDF
-typst compile --root . typst/cv.typ --font-path typst/fonts/ cv.pdf
+# Start development server
+deno task dev
 
-# Build HTML
-uv run scripts/render.py web/index.html.j2 data.yaml build/index.html
+# Build for production (HTML + PDF + Favicons)
+deno task build
 
-# Generate favicons
-uv run scripts/generate_favicons.py vadim.jpeg --output-dir build/
+# Preview production build
+deno task preview
 
-# Copy CSS
-cp web/styles.css build/
+# Check types
+deno task check
 ```
 
 ## To update CV
