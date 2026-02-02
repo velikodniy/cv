@@ -18,7 +18,8 @@
     "sharp": "npm:sharp@^0.34.5",
     "js-yaml": "npm:js-yaml@^4.1.1",
     "@types/js-yaml": "npm:@types/js-yaml@^4.0.9",
-    "@types/node": "npm:@types/node@^25.2.0"
+    "@types/node": "npm:@types/node@^25.2.0",
+    "wrangler": "npm:wrangler@^4.61.1"
   },
   "nodeModulesDir": "auto"
 }
