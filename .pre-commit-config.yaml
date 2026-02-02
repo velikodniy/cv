@@ -1,17 +1,28 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: v5.0.0
     hooks:
-      - id: check-merge-conflict
-      - id: end-of-file-fixer
       - id: trailing-whitespace
-      - id: pretty-format-json
-        args: ["--autofix", "--no-sort-keys"]
+      - id: end-of-file-fixer
       - id: check-yaml
-      - id: check-json
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.0
+      - id: check-added-large-files
+
+  - repo: local
     hooks:
-      - id: ruff
-        args: [ --fix ]
-      - id: ruff-format
+      - id: deno-fmt
+        name: deno fmt
+        entry: deno fmt
+        language: system
+        types: [javascript]
+        files: \.(js|ts|jsx|tsx|json)$
+      - id: deno-lint
+        name: deno lint
+        entry: deno lint
+        language: system
+        types: [javascript]
+        files: \.(js|ts|jsx|tsx)$
+      - id: deno-check
+        name: deno check
+        entry: deno task check
+        language: system
+        pass_filenames: false

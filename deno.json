@@ -1,0 +1,25 @@
+{
+  "tasks": {
+    "dev": "deno run -A --node-modules-dir npm:astro dev",
+    "check": "deno run -A --node-modules-dir npm:astro check",
+    "build": "deno task typst && deno task favicons && deno run -A --node-modules-dir npm:astro build",
+    "preview": "deno run -A --node-modules-dir npm:astro preview",
+    "astro": "deno run -A --node-modules-dir npm:astro",
+    "typst": "mkdir -p public && typst compile --root . typst/cv.typ --font-path typst/fonts/ public/vvelicodnii-cv.pdf",
+    "favicons": "mkdir -p public && deno run -A --node-modules-dir scripts/generate-favicons.ts vadim.jpeg --output-dir public/"
+  },
+  "imports": {
+    "astro": "npm:astro@^5.1.1",
+    "@astrojs/check": "npm:@astrojs/check@^0.9.6",
+    "typescript": "npm:typescript@^5.7.3",
+    "sharp": "npm:sharp@^0.33.5",
+    "js-yaml": "npm:js-yaml@^4.1.0",
+    "@types/js-yaml": "npm:@types/js-yaml@^4.0.9",
+    "@types/node": "npm:@types/node@^22.10.7"
+  },
+  "nodeModulesDir": "auto",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "astro"
+  }
+}
