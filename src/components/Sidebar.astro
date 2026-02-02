@@ -1,0 +1,100 @@
+---
+import type { Contact, Skills } from "@/types";
+
+interface Props {
+  author: string;
+  photo: string;
+  positions: string[];
+  contacts: Contact;
+  location: string;
+  skills: Skills;
+}
+
+const { author, photo, positions, contacts, location, skills } = Astro.props;
+---
+
+<aside class="resume__sidebar">
+  <header class="profile">
+    <img
+      src={photo}
+      alt={`Photo of ${author}`}
+      class="profile__avatar"
+      width="192"
+      height="192"
+      loading="eager"
+      itemprop="image"
+    />
+    <h1 class="profile__name" itemprop="name">{author}</h1>
+    <p class="profile__title" itemprop="jobTitle">{positions.join(" · ")}</p>
+  </header>
+
+  <address class="contact" aria-label="Contact information">
+    <ul class="contact__list" role="list">
+      <li>
+        <a
+          href={`mailto:${contacts.email}`}
+          class="contact__link"
+          rel="noopener"
+          aria-label={`Send email to ${contacts.email}`}
+          itemprop="email"
+        >
+          <i class="fas fa-envelope contact__icon" aria-hidden="true"></i>
+          <span>{contacts.email}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href={`https://github.com/${contacts.github}`}
+          class="contact__link"
+          rel="noopener nofollow"
+          target="_blank"
+          aria-label={`Visit ${author}'s GitHub profile`}
+          itemprop="sameAs"
+        >
+          <i class="fab fa-github contact__icon" aria-hidden="true"></i>
+          <span>{contacts.github}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href={`https://linkedin.com/in/${contacts.linkedin}`}
+          class="contact__link"
+          rel="noopener nofollow"
+          target="_blank"
+          aria-label={`Visit ${author}'s LinkedIn profile`}
+          itemprop="sameAs"
+        >
+          <i class="fab fa-linkedin contact__icon" aria-hidden="true"></i>
+          <span>{contacts.linkedin}</span>
+        </a>
+      </li>
+    </ul>
+  </address>
+
+  <section class="personal-info" aria-labelledby="personal-info-title">
+    <h2 id="personal-info-title" class="section__subtitle">
+      Personal Information
+    </h2>
+    <dl class="personal-info__list">
+      <div class="personal-info__item">
+        <dt class="personal-info__label">Location</dt>
+        <dd class="personal-info__value" itemprop="address">{location}</dd>
+      </div>
+      <div class="personal-info__item">
+        <dt class="personal-info__label">Languages</dt>
+        <dd class="personal-info__value">
+          {
+            skills.languages.map((language, index) => (
+              <>
+                <span itemprop="knowsLanguage">
+                  {language.name} ({language.level})
+                </span>
+                {index < skills.languages.length - 1 && ", "}
+              </>
+            ))
+          }
+        </dd>
+      </div>
+    </dl>
+  </section>
+</aside>

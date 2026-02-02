@@ -1,0 +1,71 @@
+---
+import type { Education } from "@/types";
+
+interface Props {
+  education: Education[];
+}
+
+const { education } = Astro.props;
+
+// Helper to process markdown links
+const processMarkdownLinks = (text: string) => {
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>'
+  );
+};
+---
+
+<section class="section" aria-labelledby="education-title">
+  <h2 id="education-title" class="section__title">Education</h2>
+  {
+    education.map((edu) => (
+      <article
+        class="experience-item"
+        itemscope
+        itemtype="https://schema.org/EducationalOccupationalCredential"
+        itemprop="hasCredential"
+      >
+        <header class="experience-item__header">
+          <h3 class="experience-item__title" itemprop="name">
+            {edu.major}
+          </h3>
+          <time class="experience-item__date" itemprop="dateCreated">
+            {edu.dates.start} — {edu.dates.end}
+          </time>
+        </header>
+        <div class="experience-item__meta">
+          <p
+            class="experience-item__company"
+            itemprop="recognizedBy"
+            itemscope
+            itemtype="https://schema.org/EducationalOrganization"
+          >
+            <span itemprop="name">{edu.institution}</span>
+          </p>
+          <span></span>
+        </div>
+        <ul class="highlights-list" itemprop="description">
+          {edu.highlights.map((highlight) => (
+            <li class="highlights-list__item" set:html={processMarkdownLinks(highlight)} />
+          ))}
+          <li class="highlights-list__item">
+            {edu.degree} degree
+            {edu.graduated === false && " (not graduated)"}
+            {edu.honor && (
+              <>
+                {" "}
+                — <em>with honor</em>
+              </>
+            )}
+          </li>
+          {edu.gpa && (
+            <li class="highlights-list__item">
+              GPA: {edu.gpa.value}/{edu.gpa.max}
+            </li>
+          )}
+        </ul>
+      </article>
+    ))
+  }
+</section>

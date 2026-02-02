@@ -1,0 +1,35 @@
+---
+import type { Patent } from "@/types";
+
+interface Props {
+  patents: Patent[];
+}
+
+const { patents } = Astro.props;
+---
+
+<section class="section" aria-labelledby="patents-title">
+  <h2 id="patents-title" class="section__title">Patents</h2>
+  <ul class="highlights-list">
+    {
+      patents.map((patent) => (
+        <li
+          class="highlights-list__item"
+          itemscope
+          itemtype="https://schema.org/CreativeWork"
+        >
+          <cite itemprop="name">{patent.title}</cite> (
+          <a
+            href={patent.link}
+            target="_blank"
+            rel="noopener nofollow"
+            itemprop="url"
+          >
+            {patent.code}
+          </a>
+          )
+        </li>
+      ))
+    }
+  </ul>
+</section>

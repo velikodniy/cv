@@ -1,0 +1,72 @@
+---
+import type { Job } from "@/types";
+
+interface Props {
+  experience: Job[];
+}
+
+const { experience } = Astro.props;
+
+// Helper to process markdown links in highlights
+const processMarkdownLinks = (text: string) => {
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>'
+  );
+};
+---
+
+<section class="section" aria-labelledby="experience-title">
+  <h2 id="experience-title" class="section__title">Experience</h2>
+  {
+    experience.map((job) => (
+      <article
+        class="experience-item"
+        itemprop="hasOccupation"
+        itemscope
+        itemtype="https://schema.org/Occupation"
+      >
+        <header class="experience-item__header">
+          <h3 class="experience-item__title" itemprop="name">
+            {job.position}
+          </h3>
+          <span class="experience-item__location">{job.location}</span>
+        </header>
+        <div class="experience-item__meta">
+          <p
+            class="experience-item__company"
+            itemprop="occupationLocation"
+            itemscope
+            itemtype="https://schema.org/Place"
+          >
+            <span itemprop="name">{job.company}</span>
+          </p>
+          <time
+            class="experience-item__date"
+            itemprop="jobStartDate"
+            datetime={job.dates.start}
+          >
+            {job.dates.start} — {job.dates.end || "Present"}
+          </time>
+          {job.dates.end && (
+            <meta itemprop="jobEndDate" content={job.dates.end} />
+          )}
+        </div>
+        <ul class="highlights-list" itemprop="description">
+          {job.highlights.map((highlight) => (
+            <li class="highlights-list__item" set:html={processMarkdownLinks(highlight)} />
+          ))}
+        </ul>
+        {job.techStack && (
+          <div class="tech-stack">
+            {job.techStack.map((tech) => (
+              <span class="tech-chip" itemprop="skills">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+      </article>
+    ))
+  }
+</section>
