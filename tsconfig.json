@@ -5,5 +5,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "exclude": ["scripts"]
+  "exclude": ["scripts/"]
 }
