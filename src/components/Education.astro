@@ -1,19 +1,12 @@
 ---
 import type { Education } from "@/types";
+import { processMarkdownLinks } from "@/utils/markdownLinks";
 
 interface Props {
   education: Education[];
 }
 
 const { education } = Astro.props;
-
-// Helper to process markdown links
-const processMarkdownLinks = (text: string) => {
-  return text.replace(
-    /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener">$1</a>'
-  );
-};
 ---
 
 <section class="section" aria-labelledby="education-title">
