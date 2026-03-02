@@ -442,7 +442,7 @@ h6 {
 
 .btn--primary {
   background: var(--color-accent);
-  color: white !important;
+  color: white;
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   font-size: var(--font-size-xs);
@@ -480,7 +480,7 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
-a:visited {
+a:visited:not(.btn) {
   color: var(--color-accent);
 }
 
