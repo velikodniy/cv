@@ -38,14 +38,12 @@ async function generateFavicons() {
 
   // Crop to square
   const size = Math.min(metadata.width, metadata.height);
-  const pipeline = image
-    .extract({
-      left: Math.floor((metadata.width - size) / 2),
-      top: Math.floor((metadata.height - size) / 2),
-      width: size,
-      height: size,
-    })
-    .resize(size, size);
+  const pipeline = image.extract({
+    left: Math.floor((metadata.width - size) / 2),
+    top: Math.floor((metadata.height - size) / 2),
+    width: size,
+    height: size,
+  });
 
   // Enhance
   pipeline.modulate({
