@@ -19,7 +19,7 @@ experience:
     company: Snap
     location: London, UK
     dates:
-      start: Oct 2018
+      start: 2018-10
     highlights:
       - Tech lead and key developer of Snap AI (formerly SnapML Kit), a no/low-code web application for creating ML-powered lenses and 3D resources.
       - One of the authors of the app idea and novel DL model used for creating viral ML lenses that boosted user engagement and financial metrics.
@@ -47,8 +47,8 @@ experience:
     company: Teleport Future Technologies
     location: Remote
     dates:
-      start: Oct 2016
-      end: Apr 2018
+      start: 2016-10
+      end: 2018-04
     highlights:
       - Research and development in deep learning and computer vision.
       - Novel deep learning architecture for real-time on-device segmentation.
@@ -70,8 +70,8 @@ experience:
     company: Shevchenko Transnistria State University
     location: Tiraspol, Moldova
     dates:
-      start: Sep 2006
-      end: Sep 2018
+      start: 2006-09
+      end: 2018-09
     highlights:
       - Gave lectures on software development and design, algorithms, machine learning, systems programming, numerical analysis, CFD, etc.
       - Supervised 10+ diploma theses.
@@ -84,8 +84,8 @@ education:
     honor: true
     graduated: true
     dates:
-      start: Sep 2001
-      end: Jul 2006
+      start: 2001-09
+      end: 2006-07
     gpa:
       value: 4.9
       max: 5.0

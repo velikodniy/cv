@@ -7,6 +7,9 @@ interface Props {
 }
 
 const { experience } = Astro.props;
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", timeZone: "UTC" }).format(new Date(date));
 ---
 
 <section class="section" aria-labelledby="experience-title">
@@ -39,7 +42,7 @@ const { experience } = Astro.props;
             itemprop="jobStartDate"
             datetime={job.dates.start}
           >
-            {job.dates.start} — {job.dates.end || "Present"}
+            {formatDate(job.dates.start)} — {job.dates.end ? formatDate(job.dates.end) : "Present"}
           </time>
           {job.dates.end && (
             <meta itemprop="jobEndDate" content={job.dates.end} />

@@ -269,14 +269,23 @@
   ]
 }
 
+#let month-names = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+#let format-date(date) = {
+  let parts = str(date).split("-")
+  let year = parts.at(0)
+  let month = month-names.at(int(parts.at(1)) - 1)
+  [#month #year]
+}
+
 #let date-range(range, graduated: true) = [
   #if "end" in range [
-    #range.start --- #range.end
+    #format-date(range.start) --- #format-date(range.end)
   ] else [
     #if graduated [
-      #range.start --- #emph("Present")
+      #format-date(range.start) --- #emph("Present")
     ] else [
-      #range.start ---
+      #format-date(range.start) ---
     ]
   ]
 ]

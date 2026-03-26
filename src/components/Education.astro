@@ -7,6 +7,9 @@ interface Props {
 }
 
 const { education } = Astro.props;
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", timeZone: "UTC" }).format(new Date(date));
 ---
 
 <section class="section" aria-labelledby="education-title">
@@ -24,7 +27,7 @@ const { education } = Astro.props;
             {edu.major}
           </h3>
           <time class="experience-item__date" itemprop="dateCreated">
-            {edu.dates.start} — {edu.dates.end}
+            {formatDate(edu.dates.start)} — {edu.dates.end ? formatDate(edu.dates.end) : "Present"}
           </time>
         </header>
         <div class="experience-item__meta">
