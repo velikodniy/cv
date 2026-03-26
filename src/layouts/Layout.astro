@@ -70,6 +70,20 @@ const updatedDate = new Date(
   <body>
     <div class="resume" itemscope itemtype="https://schema.org/Person">
       <slot />
+
+      <div class="actions" role="toolbar" aria-label="Page actions">
+        <slot name="actions" />
+
+        <a
+          href={pdfFilename}
+          download={pdfFilename}
+          class="btn btn--primary"
+          aria-label="Download CV as PDF"
+        >
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span>Download CV</span>
+        </a>
+      </div>
     </div>
 
     <footer class="footer">
@@ -77,19 +91,5 @@ const updatedDate = new Date(
         Updated on {updatedDate} • Based on <a href="https://github.com/velikodniy/cv" target="_blank" rel="noopener">velikodniy/cv</a>
       </small>
     </footer>
-
-    <div class="actions" role="toolbar" aria-label="Page actions">
-      <slot name="actions" />
-
-      <a
-        href={pdfFilename}
-        download={pdfFilename}
-        class="btn btn--primary"
-        aria-label="Download CV as PDF"
-      >
-        <i class="fas fa-download" aria-hidden="true"></i>
-        <span>Download CV</span>
-      </a>
-    </div>
   </body>
 </html>
