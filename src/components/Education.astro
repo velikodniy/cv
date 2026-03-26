@@ -1,5 +1,6 @@
 ---
 import type { Education } from "@/types";
+import { formatDate } from "@/utils/formatDate";
 import { processMarkdownLinks } from "@/utils/markdownLinks";
 
 interface Props {
@@ -7,9 +8,6 @@ interface Props {
 }
 
 const { education } = Astro.props;
-
-const formatDate = (date: string) =>
-  new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", timeZone: "UTC" }).format(new Date(date));
 ---
 
 <section class="section" aria-labelledby="education-title">
