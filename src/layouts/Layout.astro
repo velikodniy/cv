@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import { execSync } from "node:child_process";
 
 interface Props {
   title: string;
@@ -12,6 +13,9 @@ interface Props {
 
 const { title, description, author, photo, baseUrl, pdfFilename } = Astro.props;
 const photoUrl = `${baseUrl}/${photo}`;
+const updatedDate = new Date(
+  execSync("git log -1 --format=%cI -- data.yaml", { encoding: "utf8" }).trim(),
+).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
 
 <!DOCTYPE html>
@@ -70,7 +74,7 @@ const photoUrl = `${baseUrl}/${photo}`;
 
     <footer class="footer">
       <small>
-        Updated on {new Date().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })} • Based on <a href="https://github.com/velikodniy/cv" target="_blank" rel="noopener">velikodniy/cv</a>
+        Updated on {updatedDate} • Based on <a href="https://github.com/velikodniy/cv" target="_blank" rel="noopener">velikodniy/cv</a>
       </small>
     </footer>
 
