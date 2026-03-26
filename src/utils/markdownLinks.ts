@@ -6,8 +6,14 @@ const escapeHtml = (str: string) =>
     .replace(/"/g, "&quot;");
 
 export const processMarkdownLinks = (text: string) => {
-  return escapeHtml(text).replace(
+  return text.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener">$1</a>',
+    (_, linkText, url) =>
+      `<a href="${encodeURI(url)}" target="_blank" rel="noopener">${
+        escapeHtml(linkText)
+      }</a>`,
+  ).replace(
+    /(<a\s[^>]*>.*?<\/a>)|([^<]+)/g,
+    (_, tag, plain) => tag ?? escapeHtml(plain),
   );
 };
