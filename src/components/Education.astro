@@ -24,7 +24,7 @@ const { education } = Astro.props;
           <h3 class="experience-item__title" itemprop="name">
             {edu.major}
           </h3>
-          <time class="experience-item__date" itemprop="dateCreated">
+          <time class="experience-item__date" itemprop="dateCreated" datetime={edu.dates.start}>
             {formatDate(edu.dates.start)} — {edu.dates.end ? formatDate(edu.dates.end) : "Present"}
           </time>
         </header>
