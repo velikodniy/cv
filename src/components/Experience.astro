@@ -35,16 +35,13 @@ const { experience } = Astro.props;
           >
             <span itemprop="name">{job.company}</span>
           </p>
-          <time
-            class="experience-item__date"
-            itemprop="jobStartDate"
-            datetime={job.dates.start}
-          >
-            {formatDate(job.dates.start)} — {job.dates.end ? formatDate(job.dates.end) : "Present"}
-          </time>
+          <meta itemprop="jobStartDate" content={job.dates.start} />
           {job.dates.end && (
             <meta itemprop="jobEndDate" content={job.dates.end} />
           )}
+          <span class="experience-item__date">
+            <time datetime={job.dates.start}>{formatDate(job.dates.start)}</time> — {job.dates.end ? <time datetime={job.dates.end}>{formatDate(job.dates.end)}</time> : "Present"}
+          </span>
         </div>
         <ul class="highlights-list" itemprop="description">
           {job.highlights.map((highlight) => (
