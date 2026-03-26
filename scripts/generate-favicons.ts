@@ -45,11 +45,7 @@ async function generateFavicons() {
     height: size,
   });
 
-  // Enhance
-  pipeline.modulate({
-    brightness: 1.0,
-    saturation: 1.0,
-  }).sharpen({
+  pipeline.sharpen({
     sigma: 1.0,
     m1: 1.0,
     m2: 0,

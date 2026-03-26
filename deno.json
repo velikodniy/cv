@@ -9,7 +9,6 @@
     "favicons": "mkdir -p public && deno run -A scripts/generate-favicons.ts"
   },
   "imports": {
-    "@std/cli": "jsr:@std/cli@^1.0.27",
     "@std/fs": "jsr:@std/fs@^1.0.22",
     "@std/yaml": "jsr:@std/yaml@^1.0.11",
     "astro": "npm:astro@^5.17.1",
